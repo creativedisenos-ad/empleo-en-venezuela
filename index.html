@@ -79,6 +79,7 @@
   .hero{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-card);padding:1.15rem;margin:.9rem 0 0;box-shadow:var(--shadow-card)}
   .hero h2{margin:0 0 .3rem;font-size:1.3rem;line-height:1.18}
   .hero p{margin:0;font-size:.95rem;color:var(--ink-2);line-height:1.5}
+  .hero label{display:block;font-size:.88rem;font-weight:800;color:var(--ink-2);margin:.8rem 0 .4rem}
   .privacy{display:flex;gap:.6rem;align-items:flex-start;background:var(--brand-soft);border:1px solid #c6dbff;color:#12316e;
     font-size:.86rem;padding:.75rem .85rem;border-radius:var(--r-card);margin-top:.8rem;line-height:1.45}
   .privacy svg{flex:none;width:1.25rem;height:1.25rem;margin-top:.05rem;color:var(--brand)}
@@ -252,9 +253,12 @@
       <button id="btn-guia" class="icon-btn" aria-label="Cómo funciona">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5"/><circle cx="12" cy="7.6" r="0.4" fill="currentColor"/></svg>
       </button>
+      <button id="btn-login" class="icon-btn" aria-label="Iniciar sesión" title="Iniciar sesión">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>
+      </button>
     </div>
   </div>
-  <div class="segwrap">
+  <div class="segwrap" id="segwrap">
     <div class="segmented" id="segmented" data-i="0" role="tablist">
       <span class="seg-thumb"></span>
       <button class="seg on" data-view="personas" role="tab">
@@ -318,7 +322,7 @@
     </button>
     <button id="cta-mi-perfil" class="cta" style="margin-top:.6rem;font-size:.95rem;padding:.9rem">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
-      Ya tengo perfil — gestionarlo
+      Ya tengo perfil — iniciar sesión
     </button>
 
     <footer>
@@ -380,8 +384,70 @@
 
     <button id="cta-mi-solicitud" class="cta" style="margin-top:.8rem;font-size:.95rem;padding:.9rem">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-      Publiqué algo — ver postulaciones / marcar cubierta
+      Ya publiqué — iniciar sesión
     </button>
+  </section>
+
+  <!-- ===================== PANEL: MI PERFIL ===================== -->
+  <section id="view-panel-perfil" class="hide">
+    <div class="hero">
+      <div style="display:flex;align-items:center;gap:.6rem">
+        <button id="pp-volver" class="icon-btn" aria-label="Volver" style="width:2.2rem;height:2.2rem;flex:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <h2 style="margin:0;flex:1;font-size:1.15rem">Mi panel</h2>
+        <button id="pp-salir" class="flag" style="margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Salir</button>
+      </div>
+      <p class="name" id="pp-nombre" style="margin-top:.9rem"></p>
+      <p class="titulo" id="pp-titulo"></p>
+      <span class="badge" id="pp-badge" style="margin-top:.6rem"><span class="d"></span><span id="pp-badge-txt"></span></span>
+    </div>
+
+    <div class="hero" id="pp-activo-box">
+      <h2>Disponibilidad</h2>
+      <p>Actualiza tu estado para que sepan si pueden contactarte ahora.</p>
+      <label for="pp-disp">Actualizar disponibilidad (opcional)</label>
+      <input id="pp-disp" class="fld" maxlength="140" placeholder="Ej: Disponible desde el lunes · Solo mañanas">
+      <div style="display:flex;gap:.5rem">
+        <button id="pp-on" class="send" style="flex:1">🟢 Estoy disponible</button>
+        <button id="pp-off" class="send dark" style="flex:1">No disponible</button>
+      </div>
+      <button id="pp-retirar" class="send" style="margin-top:.6rem;background:var(--surface);color:var(--bad);border:1.5px solid #f3cdc9;box-shadow:var(--shadow-s)">🎉 Ya conseguí — retirar mi perfil</button>
+    </div>
+
+    <button id="pp-reactivar" class="cta hide">Volver a activar mi perfil</button>
+  </section>
+
+  <!-- ===================== PANEL: MI PUBLICACIÓN ===================== -->
+  <section id="view-panel-sol" class="hide">
+    <div class="hero">
+      <div style="display:flex;align-items:center;gap:.6rem">
+        <button id="pv-volver" class="icon-btn" aria-label="Volver" style="width:2.2rem;height:2.2rem;flex:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <h2 style="margin:0;flex:1;font-size:1.15rem">Mi panel</h2>
+        <button id="pv-salir" class="flag" style="margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Salir</button>
+      </div>
+      <p class="name" id="pv-titulo" style="margin-top:.9rem"></p>
+      <p class="sub" id="pv-sub"></p>
+      <span class="badge" id="pv-badge" style="margin-top:.6rem"><span class="d"></span><span id="pv-badge-txt"></span></span>
+    </div>
+
+    <div class="hero">
+      <h2>📋 Postulaciones</h2>
+      <p>Personas que se postularon a tu publicación — su contacto queda aquí.</p>
+      <div id="pv-list" style="margin-top:.6rem"></div>
+      <div id="pv-empty" class="empty hide"><div>Aún no hay postulaciones. Comparte el link de la app para que llegue a más gente.</div></div>
+    </div>
+
+    <div class="hero">
+      <h2>Estado de la publicación</h2>
+      <p>Márcala como cubierta cuando ya no necesites más gente.</p>
+      <div style="display:flex;gap:.5rem;margin-top:.7rem">
+        <button id="pv-cubierta" class="send dark" style="flex:1">✅ Marcar cubierta</button>
+        <button id="pv-reabrir" class="send" style="flex:1;background:var(--surface);color:var(--brand-deep);border:1.5px solid var(--line);box-shadow:var(--shadow-s)">Reabrir</button>
+      </div>
+    </div>
   </section>
 </div>
 
@@ -447,23 +513,17 @@
   </div>
 </div>
 
-<div id="sheet-mi-perfil" class="scrim" role="dialog" aria-modal="true" aria-label="Gestionar mi perfil">
+<div id="sheet-mi-perfil" class="scrim" role="dialog" aria-modal="true" aria-label="Iniciar sesión — mi perfil">
   <div class="sheet">
     <div class="grip"></div>
-    <h2>Gestionar mi perfil</h2>
-    <p class="hint">Márcate disponible o no, actualiza tu disponibilidad, o retira tu perfil si ya conseguiste.</p>
-    <label for="mp-perfil">¿Quién eres?</label>
-    <select id="mp-perfil" class="fld"><option value="">Elige tu nombre…</option></select>
+    <h2>Iniciar sesión</h2>
+    <p class="hint">Con tu <b>WhatsApp</b> (el que publicaste) y tu <b>clave de gestión</b> entras a tu panel: te marcas disponible, actualizas tu disponibilidad o retiras tu perfil.</p>
+    <label for="mp-tel">Tu WhatsApp *</label>
+    <input id="mp-tel" class="fld" inputmode="tel" maxlength="40" placeholder="Ej: 0414-1234567">
     <label for="mp-clave">Tu clave de gestión *</label>
     <input id="mp-clave" class="fld" inputmode="numeric" maxlength="6" placeholder="La clave de 6 dígitos que guardaste">
-    <label for="mp-disp">Actualizar disponibilidad (opcional)</label>
-    <input id="mp-disp" class="fld" maxlength="140" placeholder="Ej: Disponible desde el lunes · Solo mañanas">
-    <div style="display:flex;gap:.5rem">
-      <button id="mp-on" class="send" style="flex:1">🟢 Estoy disponible</button>
-      <button id="mp-off" class="send dark" style="flex:1">No disponible</button>
-    </div>
-    <button id="mp-retirar" class="send" style="margin-top:.6rem;background:var(--surface);color:var(--bad);border:1.5px solid #f3cdc9;box-shadow:var(--shadow-s)">🎉 Ya conseguí — retirar mi perfil</button>
-    <button class="cancel" data-close>Cerrar</button>
+    <button id="mp-entrar" class="send">Entrar a mi panel</button>
+    <button class="cancel" data-close>Cancelar</button>
   </div>
 </div>
 
@@ -544,22 +604,17 @@
   </div>
 </div>
 
-<div id="sheet-mi-solicitud" class="scrim" role="dialog" aria-modal="true" aria-label="Gestionar mi publicación">
+<div id="sheet-mi-solicitud" class="scrim" role="dialog" aria-modal="true" aria-label="Iniciar sesión — mi publicación">
   <div class="sheet">
     <div class="grip"></div>
-    <h2>Gestionar mi publicación</h2>
-    <p class="hint">Revisa quién se postuló y marca la vacante como cubierta cuando ya no necesites más gente.</p>
-    <label for="ms-sol">¿Cuál publicación?</label>
-    <select id="ms-sol" class="fld"><option value="">Elige tu publicación…</option></select>
+    <h2>Iniciar sesión</h2>
+    <p class="hint">Con los <b>últimos 4 dígitos</b> del teléfono de contacto que dejaste y tu <b>clave de gestión</b> entras a ver tus postulaciones y gestionar la publicación.</p>
+    <label for="ms-tel4">Últimos 4 dígitos de tu teléfono *</label>
+    <input id="ms-tel4" class="fld" inputmode="numeric" maxlength="4" placeholder="Ej: 1234">
     <label for="ms-clave">Tu clave de gestión *</label>
     <input id="ms-clave" class="fld" inputmode="numeric" maxlength="6" placeholder="La clave de 6 dígitos que guardaste">
-    <button id="ms-ver" class="send">📋 Ver postulaciones</button>
-    <div id="ms-list"></div>
-    <div style="display:flex;gap:.5rem;margin-top:.6rem">
-      <button id="ms-cubierta" class="send dark" style="flex:1">✅ Marcar cubierta</button>
-      <button id="ms-reabrir" class="send" style="flex:1;background:var(--surface);color:var(--brand-deep);border:1.5px solid var(--line);box-shadow:var(--shadow-s)">Reabrir</button>
-    </div>
-    <button class="cancel" data-close>Cerrar</button>
+    <button id="ms-entrar" class="send">Entrar a mi panel</button>
+    <button class="cancel" data-close>Cancelar</button>
   </div>
 </div>
 
@@ -605,7 +660,8 @@
 const SUPABASE_URL      = "https://ozuxfepfkvnxkywdsqxy.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im96dXhmZXBma3ZueGt5d2RzcXh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MjI5NTEsImV4cCI6MjA5Nzk5ODk1MX0.YhW0GalGkQZdO2NJTg_01C5XhdMmJ6RbNSNXXC0xG4o";
 
-const CACHE_KEY="emp_cache_v1", SEEN_KEY="emp_seen_guia", FS_KEY="emp_fontscale", DEV_KEY="emp_dev", MI_PERFIL_KEY="emp_mi_perfil", MI_SOL_KEY="emp_mi_sol";
+const CACHE_KEY="emp_cache_v1", SEEN_KEY="emp_seen_guia", FS_KEY="emp_fontscale", DEV_KEY="emp_dev";
+const SESSION_PERFIL_KEY="emp_sesion_perfil", SESSION_SOL_KEY="emp_sesion_sol";
 const ESTADOS_VE=["Amazonas","Anzoátegui","Apure","Aragua","Barinas","Bolívar","Carabobo","Cojedes","Delta Amacuro","Distrito Capital","Falcón","Guárico","La Guaira","Lara","Mérida","Miranda","Monagas","Nueva Esparta","Portuguesa","Sucre","Táchira","Trujillo","Yaracuy","Zulia"];
 const SECTORES={
   construccion:"Construcción y escombros",
@@ -639,6 +695,15 @@ function hace(ts){if(!ts)return"";const d=(Date.now()-new Date(ts).getTime())/10
 function getDeviceId(){try{let d=localStorage.getItem(DEV_KEY);if(!d){d=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():("dev-"+Date.now()+"-"+Math.random().toString(36).slice(2));localStorage.setItem(DEV_KEY,d);}return d;}catch(e){return "dev-"+Date.now()+Math.random().toString(36).slice(2);}}
 function waLink(num,txt){const d=soloDig(num);const n=d.startsWith("58")?d:(d.startsWith("0")?("58"+d.slice(1)):("58"+d));return "https://wa.me/"+n+(txt?("?text="+encodeURIComponent(txt)):"");}
 function igLink(h){return "https://instagram.com/"+String(h||"").replace(/^@/,"").trim();}
+function ultimos4(s){return soloDig(s).slice(-4);}
+
+/* ---------- sesión ---------- */
+function leerSesionPerfil(){try{return JSON.parse(localStorage.getItem(SESSION_PERFIL_KEY)||"null");}catch(e){return null;}}
+function guardarSesionPerfil(id,clave){try{localStorage.setItem(SESSION_PERFIL_KEY,JSON.stringify({id,clave}));}catch(e){}}
+function borrarSesionPerfil(){try{localStorage.removeItem(SESSION_PERFIL_KEY);}catch(e){}}
+function leerSesionSol(){try{return JSON.parse(localStorage.getItem(SESSION_SOL_KEY)||"null");}catch(e){return null;}}
+function guardarSesionSol(id,clave){try{localStorage.setItem(SESSION_SOL_KEY,JSON.stringify({id,clave}));}catch(e){}}
+function borrarSesionSol(){try{localStorage.removeItem(SESSION_SOL_KEY);}catch(e){}}
 
 /* ---------- API ---------- */
 function api(path,opts){opts=opts||{};return fetch(SUPABASE_URL+"/rest/v1/"+path,Object.assign({},opts,{headers:Object.assign({"apikey":SUPABASE_ANON_KEY,"Authorization":"Bearer "+SUPABASE_ANON_KEY,"Content-Type":"application/json"},opts.headers||{})}));}
@@ -781,10 +846,16 @@ function renderSols(){
 
 /* ---------- navegación ---------- */
 function setView(v){
-  view=v;$("segmented").setAttribute("data-i",v==="vacantes"?1:0);
-  document.querySelectorAll(".seg").forEach(s=>s.classList.toggle("on",s.getAttribute("data-view")===v));
+  view=v;
+  const tabView=(v==="panel-perfil")?"personas":(v==="panel-sol")?"vacantes":v;
+  $("segmented").setAttribute("data-i",tabView==="vacantes"?1:0);
+  document.querySelectorAll(".seg").forEach(s=>s.classList.toggle("on",s.getAttribute("data-view")===tabView));
   $("view-personas").classList.toggle("hide",v!=="personas");
   $("view-vacantes").classList.toggle("hide",v!=="vacantes");
+  $("view-panel-perfil").classList.toggle("hide",v!=="panel-perfil");
+  $("view-panel-sol").classList.toggle("hide",v!=="panel-sol");
+  $("segwrap").classList.toggle("hide",v==="panel-perfil"||v==="panel-sol");
+  $("btn-login").classList.toggle("hide",v==="panel-perfil"||v==="panel-sol");
   window.scrollTo({top:0,behavior:"smooth"});
 }
 document.querySelectorAll(".seg").forEach(s=>s.addEventListener("click",()=>setView(s.getAttribute("data-view"))));
@@ -797,9 +868,10 @@ document.querySelectorAll(".scrim").forEach(s=>s.addEventListener("click",e=>{if
 document.addEventListener("keydown",e=>{if(e.key==="Escape")cerrarSheets();});
 $("cta-perfil").addEventListener("click",()=>abrir("sheet-perfil"));
 $("cta-perfil-2").addEventListener("click",()=>abrir("sheet-perfil"));
-$("cta-mi-perfil").addEventListener("click",()=>{poblarMiPerfil();abrir("sheet-mi-perfil");});
+$("cta-mi-perfil").addEventListener("click",abrirLoginPerfil);
 $("cta-solicitud").addEventListener("click",()=>abrir("sheet-solicitud"));
-$("cta-mi-solicitud").addEventListener("click",()=>{poblarMiSol();abrir("sheet-mi-solicitud");});
+$("cta-mi-solicitud").addEventListener("click",abrirLoginSol);
+$("btn-login").addEventListener("click",()=>{ if(view==="vacantes")abrirLoginSol(); else abrirLoginPerfil(); });
 $("btn-guia").addEventListener("click",()=>abrir("sheet-guia"));
 $("guia-ok").addEventListener("click",()=>{try{localStorage.setItem(SEEN_KEY,"1");}catch(e){}cerrarSheets();});
 $("so-quien").addEventListener("change",()=>{$("so-inst-box").classList.toggle("hide",$("so-quien").value==="persona");});
@@ -826,7 +898,7 @@ $("pf-send").addEventListener("click",async ()=>{
     });
     if(res&&res.duplicado){toast("Ya existe un perfil con ese nombre y WhatsApp","err");return;}
     if(res&&res.ok){
-      try{localStorage.setItem(MI_PERFIL_KEY,res.id);}catch(e){}
+      guardarSesionPerfil(res.id,res.clave);
       cerrarSheets();
       ["pf-nombre","pf-titulo","pf-exp","pf-hab","pf-disp","pf-estado","pf-ciudad","pf-wa","pf-ig"].forEach(i=>$(i).value="");
       $("pf-consent").checked=false;$("pf-perdio").checked=false;
@@ -844,24 +916,75 @@ $("clave-copy").addEventListener("click",async ()=>{
   catch(e){toast("Cópiala manualmente","err");}
 });
 
-/* ---------- gestionar perfil ---------- */
-function poblarMiPerfil(){
-  const sel=$("mp-perfil");const miId=(function(){try{return localStorage.getItem(MI_PERFIL_KEY);}catch(e){return null;}})();
-  sel.innerHTML='<option value="">Elige tu nombre…</option>'+PERFILES.map(p=>`<option value="${esc(p.id)}"${p.id===miId?" selected":""}>${esc(p.nombre)} — ${esc(p.titulo)}</option>`).join("");
+/* ---------- login / panel perfil ---------- */
+function buscarPerfilPorWA(input){
+  const d=soloDig(input);if(d.length<7)return null;
+  return PERFILES.find(p=>soloDig(p.whatsapp)===d)||null;
 }
-async function miPerfilAccion(params,msgOk){
-  const id=$("mp-perfil").value,clave=($("mp-clave").value||"").trim();
-  if(!id){toast("Elige tu nombre en la lista","err");return;}
-  if(clave.length<6){toast("Escribe tu clave de 6 dígitos","err");return;}
+function poblarLoginPerfil(){$("mp-tel").value="";$("mp-clave").value="";}
+function abrirLoginPerfil(){
+  const s=leerSesionPerfil();
+  if(s&&s.id&&s.clave){
+    entrarPanelPerfil(s.id,s.clave,true).then(ok=>{if(!ok){borrarSesionPerfil();poblarLoginPerfil();abrir("sheet-mi-perfil");}});
+    return;
+  }
+  poblarLoginPerfil();abrir("sheet-mi-perfil");
+}
+async function entrarPanelPerfil(id,clave,silencioso){
   try{
-    await callRPC("emp_actualizar_perfil",Object.assign({p_id:id,p_clave:clave,p_disponibilidad:($("mp-disp").value||"").trim()||null},params));
-    try{localStorage.setItem(MI_PERFIL_KEY,id);}catch(e){}
-    toast(msgOk,"ok");cerrarSheets();refrescarPerfiles();cargarStats();
+    await callRPC("emp_actualizar_perfil",{p_id:id,p_clave:clave});
+    guardarSesionPerfil(id,clave);
+    pintarPanelPerfil(PERFILES.find(p=>p.id===id));
+    cerrarSheets();setView("panel-perfil");
+    return true;
+  }catch(err){
+    if(!silencioso)toast(motivo(err),"err");
+    return false;
+  }
+}
+function pintarPanelPerfil(prof){
+  if(!prof){
+    $("pp-nombre").textContent="Tu perfil";
+    $("pp-titulo").textContent="Parece que está retirado.";
+    $("pp-badge").className="badge b-off";$("pp-badge-txt").textContent="Retirado";
+    $("pp-activo-box").classList.add("hide");
+    $("pp-reactivar").classList.remove("hide");
+    return;
+  }
+  $("pp-activo-box").classList.remove("hide");
+  $("pp-reactivar").classList.add("hide");
+  $("pp-nombre").textContent=prof.nombre;
+  $("pp-titulo").textContent=prof.titulo;
+  $("pp-badge").className="badge "+(prof.disponible?"b-on":"b-off");
+  $("pp-badge-txt").textContent=prof.disponible?"Disponible":"No disponible";
+  $("pp-disp").value=prof.disponibilidad||"";
+}
+$("mp-entrar").addEventListener("click",async ()=>{
+  const tel=($("mp-tel").value||"").trim(),clave=($("mp-clave").value||"").trim();
+  if(soloDig(tel).length<7){toast("Escribe tu WhatsApp","err");return;}
+  if(clave.length<6){toast("Escribe tu clave de 6 dígitos","err");return;}
+  const p=buscarPerfilPorWA(tel);
+  if(!p){toast("No encontramos ningún perfil con ese WhatsApp","err");return;}
+  const btn=$("mp-entrar");btn.disabled=true;btn.textContent="Entrando…";
+  await entrarPanelPerfil(p.id,clave,false);
+  btn.disabled=false;btn.textContent="Entrar a mi panel";
+});
+async function miPanelPerfilAccion(params,msgOk){
+  const s=leerSesionPerfil();
+  if(!s||!s.id||!s.clave){toast("Tu sesión expiró, inicia sesión de nuevo","err");setView("personas");return;}
+  try{
+    await callRPC("emp_actualizar_perfil",Object.assign({p_id:s.id,p_clave:s.clave,p_disponibilidad:($("pp-disp").value||"").trim()||null},params));
+    toast(msgOk,"ok");
+    await refrescarPerfiles();cargarStats();
+    pintarPanelPerfil(PERFILES.find(p=>p.id===s.id));
   }catch(err){toast(motivo(err),"err");}
 }
-$("mp-on").addEventListener("click",()=>miPerfilAccion({p_disponible:true},"🟢 Apareces como disponible"));
-$("mp-off").addEventListener("click",()=>miPerfilAccion({p_disponible:false},"Marcado como no disponible"));
-$("mp-retirar").addEventListener("click",()=>miPerfilAccion({p_activo:false},"🎉 ¡Felicidades! Tu perfil fue retirado"));
+$("pp-on").addEventListener("click",()=>miPanelPerfilAccion({p_disponible:true},"🟢 Apareces como disponible"));
+$("pp-off").addEventListener("click",()=>miPanelPerfilAccion({p_disponible:false},"Marcado como no disponible"));
+$("pp-retirar").addEventListener("click",()=>miPanelPerfilAccion({p_activo:false},"🎉 ¡Felicidades! Tu perfil fue retirado"));
+$("pp-reactivar").addEventListener("click",()=>miPanelPerfilAccion({p_activo:true},"✅ Tu perfil fue reactivado"));
+$("pp-volver").addEventListener("click",()=>setView("personas"));
+$("pp-salir").addEventListener("click",()=>{borrarSesionPerfil();setView("personas");});
 
 /* ---------- publicar solicitud ---------- */
 $("so-send").addEventListener("click",async ()=>{
@@ -887,7 +1010,7 @@ $("so-send").addEventListener("click",async ()=>{
       p_pago:$("so-puesto").value==="voluntariado"?null:(($("so-pago").value||"").trim()||null),p_device:getDeviceId()
     });
     if(res&&res.ok){
-      try{localStorage.setItem(MI_SOL_KEY,res.id);}catch(e){}
+      guardarSesionSol(res.id,res.clave);
       cerrarSheets();
       ["so-inst","so-titulo","so-desc","so-personas","so-pago","so-estado","so-ciudad","so-nombre","so-tel"].forEach(i=>{if($(i))$(i).value="";});
       $("so-consent").checked=false;
@@ -928,33 +1051,74 @@ $("po-send").addEventListener("click",async ()=>{
   finally{btn.disabled=false;btn.textContent="Postularme — dame el contacto";}
 });
 
-/* ---------- gestionar solicitud ---------- */
-function poblarMiSol(){
-  const sel=$("ms-sol");const miId=(function(){try{return localStorage.getItem(MI_SOL_KEY);}catch(e){return null;}})();
-  sel.innerHTML='<option value="">Elige tu publicación…</option>'+SOLS.map(s=>`<option value="${esc(s.id)}"${s.id===miId?" selected":""}>${esc(s.titulo)} (${esc(s.estado_solicitud)})</option>`).join("");
-  $("ms-list").innerHTML="";
+/* ---------- login / panel solicitud ---------- */
+function buscarSolCandidatos(input4){
+  const d=soloDig(input4).slice(-4);
+  if(d.length<4)return [];
+  return SOLS.filter(s=>ultimos4(s.telefono_mask)===d);
 }
-$("ms-ver").addEventListener("click",async ()=>{
-  const id=$("ms-sol").value,clave=($("ms-clave").value||"").trim();
-  if(!id||clave.length<6){toast("Elige tu publicación y escribe tu clave","err");return;}
-  const btn=$("ms-ver");btn.disabled=true;btn.textContent="Cargando…";
+function poblarLoginSol(){$("ms-tel4").value="";$("ms-clave").value="";}
+function abrirLoginSol(){
+  const s=leerSesionSol();
+  if(s&&s.id&&s.clave){
+    entrarPanelSol(s.id,s.clave,true).then(ok=>{if(!ok){borrarSesionSol();poblarLoginSol();abrir("sheet-mi-solicitud");}});
+    return;
+  }
+  poblarLoginSol();abrir("sheet-mi-solicitud");
+}
+async function entrarPanelSol(id,clave,silencioso){
   try{
     const ps=await callRPC("emp_mis_postulaciones",{p_id:id,p_clave:clave});
-    try{localStorage.setItem(MI_SOL_KEY,id);}catch(e){}
-    $("ms-list").innerHTML=(Array.isArray(ps)&&ps.length)
-      ?ps.map(c=>`<div class="resbox" style="background:var(--surface-2);border-color:var(--line-2)"><b>${esc(c.nombre)}</b> · <a href="${esc(waLink(c.telefono,"Hola "+c.nombre+", vi tu postulación en empleoenvenezuela.com."))}" target="_blank" rel="noopener noreferrer">${esc(c.telefono)} (WhatsApp)</a>${c.mensaje?("<br>“"+esc(c.mensaje)+"”"):""}<br><span style="font-size:.78rem;color:var(--muted)">${esc(hace(c.creado))}</span></div>`).join("")
-      :'<div class="resbox" style="background:var(--surface-2);border-color:var(--line-2)">Aún no hay postulaciones. Comparte el link de la app para que llegue a más gente.</div>';
-  }catch(err){toast(motivo(err),"err");}
-  finally{btn.disabled=false;btn.textContent="📋 Ver postulaciones";}
-});
-async function gestionarSol(nuevoEstado,msgOk){
-  const id=$("ms-sol").value,clave=($("ms-clave").value||"").trim();
-  if(!id||clave.length<6){toast("Elige tu publicación y escribe tu clave","err");return;}
-  try{await callRPC("emp_gestionar_solicitud",{p_id:id,p_clave:clave,p_nuevo_estado:nuevoEstado});toast(msgOk,"ok");refrescarSols();cargarStats();}
-  catch(err){toast(motivo(err),"err");}
+    guardarSesionSol(id,clave);
+    pintarPanelSol(SOLS.find(s=>s.id===id),Array.isArray(ps)?ps:[]);
+    cerrarSheets();setView("panel-sol");
+    return true;
+  }catch(err){
+    if(!silencioso)toast(motivo(err),"err");
+    return false;
+  }
 }
-$("ms-cubierta").addEventListener("click",()=>gestionarSol("cubierta","✅ Marcada como cubierta. ¡Éxito!"));
-$("ms-reabrir").addEventListener("click",()=>gestionarSol("abierta","Publicación reabierta"));
+function pintarPanelSolIdentidad(sol){
+  if(!sol){$("pv-titulo").textContent="Mi publicación";$("pv-sub").textContent="";$("pv-badge").className="badge b-off";$("pv-badge-txt").textContent="";return;}
+  $("pv-titulo").textContent=sol.titulo;
+  $("pv-sub").textContent=`${SOLIC[sol.solicitante_tipo]||"Otro"}${sol.institucion?(": "+sol.institucion):""} · ${sol.ciudad}, ${sol.estado}`;
+  const abierta=sol.estado_solicitud==="abierta";
+  $("pv-badge").className="badge "+(abierta?(sol.urgencia==="urgente"?"b-urg":"b-nor"):"b-cub");
+  $("pv-badge-txt").textContent=abierta?(sol.urgencia==="urgente"?"Urgente":"Abierta"):"Cubierta";
+}
+function pintarPanelSolLista(ps){
+  const list=$("pv-list"),empty=$("pv-empty");
+  if(!Array.isArray(ps)||!ps.length){list.innerHTML="";empty.classList.remove("hide");return;}
+  empty.classList.add("hide");
+  list.innerHTML=ps.map(c=>`<div class="resbox" style="background:var(--surface-2);border-color:var(--line-2)"><b>${esc(c.nombre)}</b> · <a href="${esc(waLink(c.telefono,"Hola "+c.nombre+", vi tu postulación en empleoenvenezuela.com."))}" target="_blank" rel="noopener noreferrer">${esc(c.telefono)} (WhatsApp)</a>${c.mensaje?("<br>“"+esc(c.mensaje)+"”"):""}<br><span style="font-size:.78rem;color:var(--muted)">${esc(hace(c.creado))}</span></div>`).join("");
+}
+function pintarPanelSol(sol,ps){pintarPanelSolIdentidad(sol);pintarPanelSolLista(ps);}
+$("ms-entrar").addEventListener("click",async ()=>{
+  const d4=soloDig($("ms-tel4").value),clave=($("ms-clave").value||"").trim();
+  if(d4.length<4){toast("Escribe los últimos 4 dígitos de tu teléfono","err");return;}
+  if(clave.length<6){toast("Escribe tu clave de 6 dígitos","err");return;}
+  const cands=buscarSolCandidatos(d4);
+  if(!cands.length){toast("No encontramos ninguna publicación con esos dígitos","err");return;}
+  const btn=$("ms-entrar");btn.disabled=true;btn.textContent="Entrando…";
+  let ok=false;
+  for(const c of cands){if(await entrarPanelSol(c.id,clave,true)){ok=true;break;}}
+  btn.disabled=false;btn.textContent="Entrar a mi panel";
+  if(!ok)toast("Esa clave no coincide con esa publicación","err");
+});
+async function gestionarSolPanel(nuevoEstado,msgOk){
+  const s=leerSesionSol();
+  if(!s||!s.id||!s.clave){toast("Tu sesión expiró, inicia sesión de nuevo","err");setView("vacantes");return;}
+  try{
+    await callRPC("emp_gestionar_solicitud",{p_id:s.id,p_clave:s.clave,p_nuevo_estado:nuevoEstado});
+    toast(msgOk,"ok");
+    await refrescarSols();cargarStats();
+    pintarPanelSolIdentidad(SOLS.find(x=>x.id===s.id));
+  }catch(err){toast(motivo(err),"err");}
+}
+$("pv-cubierta").addEventListener("click",()=>gestionarSolPanel("cubierta","✅ Marcada como cubierta. ¡Éxito!"));
+$("pv-reabrir").addEventListener("click",()=>gestionarSolPanel("abierta","Publicación reabierta"));
+$("pv-volver").addEventListener("click",()=>setView("vacantes"));
+$("pv-salir").addEventListener("click",()=>{borrarSesionSol();setView("vacantes");});
 
 /* ---------- reportar ---------- */
 let abusoCtx=null,abusoMotivo=null;
