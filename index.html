@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f3f6fb">
+<meta name="description" content="Trabajo y voluntariado después del sismo en Venezuela. Publica tu perfil si perdiste tu trabajo, ofrece tus manos como voluntario, o publica una vacante o petición de ayuda. Gratuito y comunitario.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<link rel="preconnect" href="https://ozuxfepfkvnxkywdsqxy.supabase.co" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Empleo en Venezuela · Trabajo y voluntariado después del sismo</title>
+<style>
+  :root{
+    --bg:#f3f6fb; --surface:#ffffff; --surface-2:#edf1f8;
+    --ink:#101828; --ink-2:#344054; --muted:#5d6b82;
+    --line:rgba(30,41,59,.15); --line-2:rgba(30,41,59,.08);
+    --brand:#1a56db; --brand-deep:#1240a8; --brand-soft:#e1ecff;
+    --teal:#0a8d8f; --teal-soft:#dff4f3;
+    --violet:#6d4fe0; --violet-soft:#efe9ff;
+    --ok:#0f8a45; --ok-bg:#e4f6ea; --warn:#b5630a; --warn-bg:#fcecd6;
+    --bad:#cc2a20; --bad-bg:#fce7e5; --unk:#5d6b82; --unk-bg:#e9edf4;
+    --shadow-s:0 1px 2px rgba(18,64,168,.05),0 2px 6px rgba(18,64,168,.05);
+    --shadow-m:0 2px 8px rgba(18,64,168,.05),0 16px 40px rgba(18,64,168,.11);
+    --shadow-l:0 -2px 12px rgba(18,64,168,.06),0 -24px 60px rgba(18,64,168,.22);
+    --shadow-card:0 2px 8px rgba(18,64,168,.05),0 14px 36px rgba(18,64,168,.09);
+    --shadow-pop:0 24px 56px -8px rgba(18,64,168,.24);
+    --shadow-btn:0 2px 4px rgba(26,86,219,.16),0 8px 20px rgba(26,86,219,.30);
+    --ring:0 0 0 4px var(--brand-soft);
+    --grad-brand:linear-gradient(150deg,#3f83f8,#1a56db);
+    --sans:"Poppins",-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --r-card:1.1rem; --r-fld:.85rem; --r-btn:.75rem; --r-pill:999px;
+    --ease:cubic-bezier(.32,.72,0,1);
+  }
+  html{font-size:18px}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.5;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;font-size:1rem}
+  .wrap{max-width:600px;margin:0 auto;padding:0 1rem 6rem}
+  button{font-family:inherit}
+  a{color:var(--brand-deep)}
+  h1,h2,h3{letter-spacing:-.02em}
+
+  header.app{position:sticky;top:0;z-index:30;background:rgba(243,246,251,.82);
+    -webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);
+    border-bottom:1px solid var(--line-2);padding-top:env(safe-area-inset-top,0)}
+  .bar-in{max-width:600px;margin:0 auto;padding:.6rem 1rem .5rem;display:flex;align-items:center;gap:.6rem}
+  .mark{flex:none;width:2.3rem;height:2.3rem;border-radius:.7rem;background:var(--grad-brand);
+    display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(26,86,219,.22),0 6px 16px rgba(26,86,219,.38)}
+  .mark svg{width:1.3rem;height:1.3rem}
+  .brand-tt{min-width:0}
+  .brand-tt h1{margin:0;font-size:1.02rem;font-weight:800;line-height:1.1}
+  .brand-tt p{margin:.05rem 0 0;font-size:.72rem;color:var(--muted);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bar-actions{margin-left:auto;display:flex;align-items:center;gap:.4rem;flex:none}
+  .az{display:flex;align-items:center;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-pill);overflow:hidden;box-shadow:var(--shadow-s)}
+  .az button{border:none;background:none;cursor:pointer;color:var(--ink-2);font-weight:800;padding:.5rem .6rem;line-height:1}
+  .az button:active{background:var(--surface-2)}
+  .az .a-sm{font-size:.78rem}.az .a-lg{font-size:1.05rem}
+  .az span.div{width:1px;align-self:stretch;background:var(--line-2)}
+  .icon-btn{width:2.5rem;height:2.5rem;border-radius:.7rem;border:1px solid var(--line);background:var(--surface);
+    color:var(--ink-2);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-s);
+    transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+  .icon-btn:active{transform:scale(.94)}.icon-btn svg{width:1.2rem;height:1.2rem}
+
+  .segwrap{max-width:600px;margin:0 auto;padding:0 1rem .6rem}
+  .segmented{display:flex;gap:.2rem;background:#e2e8f2;border-radius:.85rem;padding:.25rem;position:relative}
+  .seg{flex:1;border:none;background:none;cursor:pointer;font-size:.92rem;font-weight:700;color:var(--ink-2);
+    padding:.7rem .3rem;border-radius:.65rem;display:flex;align-items:center;justify-content:center;gap:.4rem;
+    position:relative;z-index:2;transition:color .2s var(--ease);min-height:2.9rem}
+  .seg svg{width:1.1rem;height:1.1rem;flex:none}
+  .seg.on{color:var(--brand-deep)}
+  .seg-thumb{position:absolute;top:.25rem;left:.25rem;height:calc(100% - .5rem);width:calc(50% - .35rem);
+    background:var(--surface);border-radius:.65rem;box-shadow:0 1px 2px rgba(16,24,40,.10),0 3px 10px rgba(16,24,40,.16);
+    transition:transform .28s var(--ease);z-index:1}
+  .segmented[data-i="1"] .seg-thumb{transform:translateX(calc(100% + .2rem))}
+
+  .hero{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-card);padding:1.15rem;margin:.9rem 0 0;box-shadow:var(--shadow-card)}
+  .hero h2{margin:0 0 .3rem;font-size:1.3rem;line-height:1.18}
+  .hero p{margin:0;font-size:.95rem;color:var(--ink-2);line-height:1.5}
+  .privacy{display:flex;gap:.6rem;align-items:flex-start;background:var(--brand-soft);border:1px solid #c6dbff;color:#12316e;
+    font-size:.86rem;padding:.75rem .85rem;border-radius:var(--r-card);margin-top:.8rem;line-height:1.45}
+  .privacy svg{flex:none;width:1.25rem;height:1.25rem;margin-top:.05rem;color:var(--brand)}
+  .privacy b{color:#0a2255}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin:.85rem 0 0}
+  .stat{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-card);padding:.85rem .5rem;text-align:center;box-shadow:var(--shadow-card)}
+  .stat .num{display:block;font-size:1.6rem;font-weight:800;color:var(--brand-deep);letter-spacing:-.02em;line-height:1.05;font-variant-numeric:tabular-nums}
+  .stat .lbl{display:block;font-size:.72rem;color:var(--muted);font-weight:700;margin-top:.2rem;line-height:1.2}
+
+  .searchbox{position:relative;margin-top:.85rem}
+  .searchbox svg{position:absolute;left:1rem;top:50%;transform:translateY(-50%);width:1.3rem;height:1.3rem;color:var(--muted);pointer-events:none}
+  .search{width:100%;font-size:1.05rem;font-family:var(--sans);padding:1rem 1rem 1rem 2.9rem;border:1.5px solid var(--line);
+    border-radius:var(--r-fld);background:var(--surface);color:var(--ink);box-shadow:var(--shadow-s);min-height:3.3rem}
+  .search::placeholder{color:var(--muted)}
+  .search:focus{outline:none;border-color:var(--brand);box-shadow:var(--ring)}
+  .selrow{display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap}
+  .selrow select{flex:1;min-width:calc(50% - .25rem);font-size:.95rem;font-family:var(--sans);padding:.7rem .8rem;border:1.5px solid var(--line);
+    border-radius:var(--r-fld);background:var(--surface);color:var(--ink);box-shadow:var(--shadow-s);-webkit-appearance:none;appearance:none;min-height:2.9rem;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235d6b82' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right .8rem center;padding-right:2.1rem}
+  .selrow select:focus{outline:none;border-color:var(--brand);box-shadow:var(--ring)}
+  @media (max-width:420px){.selrow select{min-width:100%;flex-basis:100%}}
+  .chips{display:flex;gap:.45rem;align-items:center;margin-top:.7rem;flex-wrap:wrap}
+  .chip{font-size:.88rem;font-weight:700;padding:.55rem 1rem;border-radius:var(--r-pill);border:1.5px solid var(--line);
+    background:var(--surface);color:var(--ink-2);cursor:pointer;box-shadow:var(--shadow-s);min-height:2.4rem;
+    transition:transform .15s var(--ease),box-shadow .15s var(--ease),background .15s,color .15s,border-color .15s}
+  .chip.on{background:var(--grad-brand);border-color:var(--brand);color:#fff;box-shadow:var(--shadow-btn)}
+  .count{font-size:.82rem;color:var(--muted);margin:.85rem .2rem .2rem;font-weight:700}
+
+  ul.list{list-style:none;margin:.4rem 0 0;padding:0;display:flex;flex-direction:column;gap:.7rem}
+  .card{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-card);padding:1rem 1.05rem;box-shadow:var(--shadow-card)}
+  @media (hover:hover){
+    .card{transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-pop)}
+  }
+  .card-top{display:flex;justify-content:space-between;gap:.7rem;align-items:flex-start}
+  .name{font-size:1.06rem;font-weight:800;margin:0;line-height:1.25}
+  .titulo{font-size:.95rem;font-weight:700;color:var(--brand-deep);margin:.25rem 0 0;line-height:1.35}
+  .sub{font-size:.85rem;color:var(--muted);margin:.35rem 0 0;display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;font-weight:600}
+  .tag{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;background:var(--surface-2);color:var(--ink-2);padding:.14rem .5rem;border-radius:.4rem}
+  .tag.t-empleo{background:var(--brand-soft);color:var(--brand-deep)}
+  .tag.t-voluntario{background:var(--teal-soft);color:#076d6f}
+  .tag.t-ambos{background:var(--violet-soft);color:#4e35b5}
+  .tag.t-temporal{background:var(--warn-bg);color:var(--warn)}
+  .tag.t-perdio{background:var(--warn-bg);color:var(--warn)}
+  .badge{flex:none;font-size:.78rem;font-weight:800;padding:.4rem .7rem;border-radius:var(--r-pill);white-space:nowrap;display:inline-flex;align-items:center;gap:.35rem}
+  .badge .d{width:.5rem;height:.5rem;border-radius:50%;background:currentColor}
+  .b-on{background:var(--ok-bg);color:var(--ok)}.b-off{background:var(--unk-bg);color:var(--unk)}
+  .b-urg{background:var(--bad-bg);color:var(--bad)}.b-nor{background:var(--unk-bg);color:var(--unk)}
+  .b-cub{background:var(--brand-soft);color:#12316e}
+  .bio{font-size:.9rem;color:var(--ink-2);margin-top:.6rem;line-height:1.5}
+  .meta{font-size:.8rem;color:var(--muted);margin-top:.55rem;font-weight:600;line-height:1.5}
+  .row-actions{display:flex;gap:.5rem;margin-top:.85rem;flex-wrap:wrap}
+  .act{font-size:.9rem;font-weight:700;padding:.65rem 1rem;border-radius:var(--r-pill);cursor:pointer;border:1.5px solid var(--line);
+    background:var(--surface);color:var(--brand-deep);display:inline-flex;align-items:center;gap:.4rem;box-shadow:var(--shadow-s);min-height:2.6rem;
+    text-decoration:none;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+  .act svg{width:1.05rem;height:1.05rem}
+  .act.wa{background:#e9fbf0;border-color:#a7e8c0;color:#0b6b34}
+  .flag{margin-top:.5rem;border:none;background:none;color:var(--muted);font-size:.8rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;padding:.4rem 0}
+  .flag svg{width:.95rem;height:.95rem}
+  .flag:active{color:var(--bad)}
+  .empty{text-align:center;color:var(--muted);padding:2.4rem 1rem;font-size:.95rem;line-height:1.5}
+  .empty svg{width:2.6rem;height:2.6rem;color:#a9b7cd;margin-bottom:.6rem}
+  .empty b{color:var(--ink-2)}
+  .skel{height:6rem;border-radius:var(--r-card);background:linear-gradient(90deg,#e6ebf3,#f1f5fa,#e6ebf3);background-size:200% 100%;animation:sh 1.3s infinite;list-style:none}
+  @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+  .btn-xl{width:100%;border:none;background:var(--grad-brand);color:#fff;font-weight:800;font-size:1.08rem;padding:1rem;
+    border-radius:var(--r-btn);cursor:pointer;box-shadow:var(--shadow-btn);min-height:3.4rem;position:relative;
+    display:flex;align-items:center;justify-content:center;gap:.5rem;transition:transform .15s var(--ease),box-shadow .15s var(--ease),filter .15s}
+  .btn-xl:active{transform:scale(.98)}.btn-xl:disabled{opacity:.5;box-shadow:none}
+  .btn-xl svg{width:1.3rem;height:1.3rem}
+  .cta{width:100%;margin-top:1rem;border:1.5px dashed var(--brand);color:var(--brand-deep);background:var(--surface);
+    font-weight:800;font-size:1rem;padding:1.05rem;border-radius:var(--r-card);cursor:pointer;min-height:3.4rem;
+    display:flex;align-items:center;justify-content:center;gap:.5rem;box-shadow:var(--shadow-s);
+    transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+  .cta:active{transform:scale(.985)}.cta svg{width:1.3rem;height:1.3rem}
+  .cta.solid{border-style:solid;background:var(--brand-soft)}
+  .send{width:100%;border:none;background:var(--grad-brand);color:#fff;font-weight:800;font-size:1.05rem;padding:.95rem;
+    border-radius:var(--r-btn);cursor:pointer;box-shadow:var(--shadow-btn);min-height:3.3rem;
+    transition:transform .15s var(--ease),box-shadow .15s var(--ease),filter .15s}
+  .send:disabled{opacity:.5;box-shadow:none}
+  .send.dark{background:linear-gradient(150deg,#2a3446,#101828);box-shadow:0 2px 4px rgba(16,24,40,.18),0 8px 20px rgba(16,24,40,.30)}
+  .send:active{transform:scale(.98)}
+  .cancel{width:100%;border:none;background:none;color:var(--muted);font-size:.95rem;font-weight:700;padding:.8rem;cursor:pointer;margin-top:.1rem;min-height:2.8rem}
+  @media (hover:hover){
+    .btn-xl:hover,.send:hover{transform:translateY(-1px);filter:brightness(1.05)}
+    .cta:hover,.act:hover,.chip:hover,.icon-btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-m)}
+  }
+  .btn-xl:focus-visible,.send:focus-visible,.cta:focus-visible,.act:focus-visible,.chip:focus-visible,.icon-btn:focus-visible,
+  .seg:focus-visible,.az button:focus-visible,.flag:focus-visible{outline:none;box-shadow:var(--ring)}
+
+  .scrim{position:fixed;inset:0;background:rgba(16,24,40,.46);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+    display:none;z-index:50;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s var(--ease)}
+  .scrim.open{display:flex;opacity:1}
+  .sheet{background:var(--surface);width:100%;max-width:600px;border-radius:1.5rem 1.5rem 0 0;
+    padding:.6rem 1.15rem calc(1.6rem + env(safe-area-inset-bottom,0));max-height:94vh;overflow:auto;box-shadow:var(--shadow-l);
+    transform:translateY(100%);transition:transform .34s var(--ease)}
+  .scrim.open .sheet{transform:translateY(0)}
+  .grip{width:2.4rem;height:.3rem;border-radius:99px;background:#d2d9e5;margin:0 auto .8rem}
+  .sheet h2{margin:.1rem 0 .2rem;font-size:1.35rem}
+  .sheet p.hint{margin:0 0 1rem;font-size:.92rem;color:var(--muted);line-height:1.5}
+  .sheet label{display:block;font-size:.88rem;font-weight:800;color:var(--ink-2);margin:0 0 .4rem}
+  .sheet .help{font-size:.8rem;color:var(--muted);margin:-.4rem 0 .7rem;font-weight:600;line-height:1.5}
+  .fld{width:100%;font-size:1rem;font-family:var(--sans);padding:.85rem;border:1.5px solid var(--line);
+    border-radius:var(--r-fld);background:var(--surface);color:var(--ink);margin-bottom:.7rem;min-height:3rem}
+  .fld::placeholder{color:var(--muted)}
+  .fld:focus{outline:none;border-color:var(--brand);box-shadow:var(--ring)}
+  textarea.fld{min-height:5rem;resize:vertical}
+  .check{display:flex;gap:.6rem;align-items:flex-start;font-size:.88rem;color:var(--ink-2);margin:.2rem 0 1rem;cursor:pointer;line-height:1.45}
+  .check input{margin-top:.15rem;width:1.3rem;height:1.3rem;accent-color:var(--brand);flex:none}
+  .rules{font-size:.86rem;color:var(--ink-2);background:#fff7ec;border:1px solid #f4dcb6;border-radius:.8rem;padding:.75rem .85rem;margin:.2rem 0 .9rem;line-height:1.55}
+  .rules b{color:var(--ink)}
+  .clave-box{background:#fff7ec;border:2px solid #f4c98a;border-radius:.9rem;padding:1rem;margin:.6rem 0;text-align:center}
+  .clave-box .cl{font-size:2rem;font-weight:800;letter-spacing:.35em;color:var(--ink);font-variant-numeric:tabular-nums;margin:.3rem 0}
+  .clave-box p{margin:.2rem 0;font-size:.85rem;color:#7a4d12;line-height:1.5}
+  .resbox{margin-top:.7rem;background:var(--ok-bg);border:1px solid #bfe6c9;border-radius:.8rem;padding:.75rem .85rem;font-size:.9rem;line-height:1.6}
+
+  footer{margin-top:2rem;padding-top:1.1rem;border-top:1px solid var(--line-2);font-size:.84rem;color:var(--muted);line-height:1.55}
+  footer b{color:var(--ink-2)}
+  .nums{display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap}
+  .num{display:inline-flex;align-items:center;gap:.4rem;background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-pill);
+    padding:.55rem .9rem;font-weight:800;color:var(--ink);text-decoration:none;box-shadow:var(--shadow-s)}
+  .num svg{width:1rem;height:1rem;color:var(--bad)}
+
+  .ally{display:block;margin-top:1rem;border-radius:var(--r-card);padding:1.15rem;color:#fff;text-decoration:none;
+    box-shadow:var(--shadow-m);transition:transform .15s var(--ease)}
+  .ally:active{transform:scale(.99)}
+  .ally.teal{background:linear-gradient(145deg,#13b6b7,#076d6f)}
+  .ally.violet{background:linear-gradient(145deg,#7c5cff,#5b3fd6)}
+  .ally .at{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem}
+  .ally .ai{flex:none;width:2.3rem;height:2.3rem;border-radius:.7rem;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center}
+  .ally .ai svg{width:1.35rem;height:1.35rem;color:#fff}
+  .ally h3{margin:0;font-size:1.1rem;color:#fff}
+  .ally p{margin:0 0 .9rem;font-size:.92rem;line-height:1.5;color:rgba(255,255,255,.88)}
+  .ally .go{display:flex;align-items:center;justify-content:center;gap:.5rem;background:#fff;font-weight:800;
+    font-size:1rem;padding:.85rem;border-radius:.8rem;min-height:3.1rem}
+  .ally.teal .go{color:#076d6f}.ally.violet .go{color:#5b3fd6}
+  .ally .go svg{width:1.1rem;height:1.1rem}
+
+  .share-fab{position:fixed;right:1rem;bottom:calc(1.1rem + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:.45rem;
+    padding:.7rem 1rem;border-radius:2rem;border:none;cursor:pointer;background:var(--grad-brand);color:#fff;font-weight:800;font-size:.92rem;
+    box-shadow:0 8px 22px rgba(26,86,219,.4);z-index:95;transition:transform .15s var(--ease)}
+  .share-fab:active{transform:scale(.95)}.share-fab svg{width:1.2rem;height:1.2rem}
+
+  .hide{display:none !important}
+  #toast{position:fixed;left:50%;transform:translateX(-50%) translateY(.5rem);bottom:1.6rem;background:var(--ink);color:#fff;
+    font-size:.95rem;font-weight:700;padding:.85rem 1.2rem;border-radius:.9rem;z-index:80;opacity:0;pointer-events:none;
+    transition:opacity .25s,transform .25s var(--ease);max-width:90%;text-align:center;box-shadow:0 12px 32px rgba(16,24,40,.32)}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  #toast.err{background:var(--bad)}#toast.ok{background:var(--ok)}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body>
+
+<header class="app">
+  <div class="bar-in">
+    <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/><path d="M3 12.5h18"/><path d="M12 11v3"/></svg></span>
+    <div class="brand-tt">
+      <h1>Empleo en Venezuela</h1>
+      <p>Trabajo y voluntariado después del sismo</p>
+    </div>
+    <div class="bar-actions">
+      <div class="az" role="group" aria-label="Tamaño de letra">
+        <button id="a-minus" class="a-sm" aria-label="Reducir letra">A−</button>
+        <span class="div"></span>
+        <button id="a-plus" class="a-lg" aria-label="Aumentar letra">A+</button>
+      </div>
+      <button id="btn-guia" class="icon-btn" aria-label="Cómo funciona">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5"/><circle cx="12" cy="7.6" r="0.4" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="segwrap">
+    <div class="segmented" id="segmented" data-i="0" role="tablist">
+      <span class="seg-thumb"></span>
+      <button class="seg on" data-view="personas" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 4a3.4 3.4 0 0 1 0 8M17.5 14.5a6 6 0 0 1 3.5 5.5"/></svg>
+        Personas disponibles
+      </button>
+      <button class="seg" data-view="vacantes" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/></svg>
+        Vacantes y voluntariado
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ===================== PERSONAS (perfiles) ===================== -->
+  <section id="view-personas">
+    <div class="hero">
+      <h2>¿Perdiste tu trabajo? ¿Quieres ayudar?</h2>
+      <p>El sismo se llevó edificios, negocios y puestos de trabajo — pero no lo que tú sabes hacer. Publica tu perfil con tu <b>experiencia, tus habilidades y tu disponibilidad</b>, como empleado o como <b>voluntario</b>. Empresas, instituciones y vecinos te pueden contactar directo.</p>
+      <button id="cta-perfil" class="btn-xl" style="margin-top:1rem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        Publicar mi perfil — gratis
+      </button>
+    </div>
+
+    <div class="stats" id="stats" aria-live="polite">
+      <div class="stat"><span class="num" id="stat-perf">—</span><span class="lbl">personas en la red</span></div>
+      <div class="stat" style="border-color:#bfe6c9;background:#f2fbf5"><span class="num" id="stat-disp" style="color:#0f8a45">—</span><span class="lbl">disponibles ahora</span></div>
+      <div class="stat"><span class="num" id="stat-sol">—</span><span class="lbl">vacantes y peticiones</span></div>
+    </div>
+
+    <div class="privacy">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>
+      <div><b>Como una red profesional, pero comunitaria y gratuita.</b> Cada quien publica su propio perfil y decide qué mostrar. Contacta, verifica y acuerda directamente con la persona — la plataforma no cobra ni intermedia.</div>
+    </div>
+
+    <div class="searchbox">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="q" class="search" type="search" inputmode="search" placeholder="Oficio, habilidad, nombre o ciudad…" autocomplete="off" aria-label="Buscar persona">
+    </div>
+    <div class="selrow">
+      <select id="f-sector" aria-label="Filtrar por sector"><option value="">Todos los sectores</option></select>
+      <select id="f-estado" aria-label="Filtrar por estado"><option value="">Todos los estados</option></select>
+    </div>
+    <div class="chips">
+      <button class="chip on" data-fil="todos">Todos</button>
+      <button class="chip" data-fil="disponibles">🟢 Disponibles</button>
+      <button class="chip" data-fil="empleo">💼 Buscan empleo</button>
+      <button class="chip" data-fil="voluntario">🤝 Voluntarios</button>
+      <button class="chip" data-fil="perdio">Perdieron su trabajo</button>
+    </div>
+    <div id="count" class="count"></div>
+    <ul id="list" class="list" aria-live="polite"><li class="skel"></li><li class="skel"></li><li class="skel"></li></ul>
+    <div id="empty" class="empty hide"></div>
+
+    <button id="cta-perfil-2" class="cta solid">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      Publicar mi perfil
+    </button>
+    <button id="cta-mi-perfil" class="cta" style="margin-top:.6rem;font-size:.95rem;padding:.9rem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+      Ya tengo perfil — gestionarlo
+    </button>
+
+    <footer>
+      <p><b>Plataforma comunitaria y gratuita</b>, hermana de hospitalesenvenezuela.com y psicologosenvenezuela.com. Los datos los publica cada persona y la plataforma <b>no verifica ni se responsabiliza</b> por acuerdos entre las partes. Nunca pagues por &quot;conseguir&quot; un puesto: aquí todo es gratis. En emergencias llama al <a href="tel:171">171</a>.</p>
+      <div class="nums">
+        <a class="num" href="tel:171"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.3a1 1 0 0 1 1 1c0 1.2.2 2.4.6 3.6a1 1 0 0 1-.25 1z"/></svg>Emergencias 171</a>
+      </div>
+    </footer>
+
+    <a class="ally teal" href="https://hospitalesenvenezuela.com" target="_blank" rel="noopener noreferrer">
+      <div class="at">
+        <span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/><path d="M12 9.5v3M10.5 11h3"/></svg></span>
+        <h3>¿Buscas a un familiar ingresado?</h3>
+      </div>
+      <p>En <b>Hospitales en Venezuela</b> puedes buscarlo por nombre o cédula y ver los centros de salud operativos cerca de ti.</p>
+      <span class="go">Ir a hospitalesenvenezuela.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+    </a>
+    <a class="ally violet" href="https://psicologosenvenezuela.com" target="_blank" rel="noopener noreferrer">
+      <div class="at">
+        <span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3A5.5 5.5 0 0 0 4 8.5c0 1.9.6 2.9 1.5 4L12 20l6.5-7.5c.9-1.1 1.5-2.1 1.5-4A5.5 5.5 0 0 0 14.5 3c-1 0-2 .4-2.5 1-.5-.6-1.5-1-2.5-1z"/></svg></span>
+        <h3>Perder el trabajo también duele</h3>
+      </div>
+      <p>Si la incertidumbre te está pesando, en <b>Psicólogos en Venezuela</b> hay profesionales y voluntarios dispuestos a escucharte, muchos gratis.</p>
+      <span class="go">Ir a psicologosenvenezuela.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+    </a>
+  </section>
+
+  <!-- ===================== VACANTES ===================== -->
+  <section id="view-vacantes" class="hide">
+    <div class="hero">
+      <h2>¿Necesitas manos o talento?</h2>
+      <p>Empresas, hospitales, alcaldías, iglesias, centros de acopio, refugios — y también vecinos. Publica lo que necesitas: <b>voluntarios para remover escombros, personal de salud, cocineros, transporte</b>… o una vacante formal para quien perdió su empleo.</p>
+      <button id="cta-solicitud" class="btn-xl" style="margin-top:1rem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        Publicar vacante o pedir voluntarios
+      </button>
+    </div>
+    <div class="privacy">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>
+      <div>El <b>teléfono del que publica va oculto</b> (····1234). Quien se postula se identifica con nombre y teléfono, y recibe el contacto completo. El que publicó ve todas sus postulaciones con su <b>clave de gestión</b>.</div>
+    </div>
+    <div class="searchbox">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="vq" class="search" type="search" inputmode="search" placeholder="¿Qué se necesita? Ej: escombros, enfermera, chofer…" autocomplete="off" aria-label="Buscar vacante">
+    </div>
+    <div class="selrow">
+      <select id="vf-sector" aria-label="Filtrar por sector"><option value="">Todos los sectores</option></select>
+      <select id="vf-estado" aria-label="Filtrar por estado"><option value="">Todos los estados</option></select>
+    </div>
+    <div class="chips">
+      <button class="chip on" data-vfil="todas">Todas</button>
+      <button class="chip" data-vfil="voluntariado">🤝 Voluntariado</button>
+      <button class="chip" data-vfil="empleo">💼 Empleo</button>
+      <button class="chip" data-vfil="urgente">🔴 Urgentes</button>
+    </div>
+    <div id="vcount" class="count"></div>
+    <ul id="vlist" class="list" aria-live="polite"><li class="skel"></li><li class="skel"></li></ul>
+    <div id="vempty" class="empty hide"></div>
+
+    <button id="cta-mi-solicitud" class="cta" style="margin-top:.8rem;font-size:.95rem;padding:.9rem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+      Publiqué algo — ver postulaciones / marcar cubierta
+    </button>
+  </section>
+</div>
+
+<!-- ===================== SHEETS ===================== -->
+<div id="sheet-perfil" class="scrim" role="dialog" aria-modal="true" aria-label="Publicar perfil">
+  <div class="sheet">
+    <div class="grip"></div>
+    <h2>Tu perfil</h2>
+    <p class="hint">Como una mini hoja de vida pública. Mientras más claro, más fácil que te consigan.</p>
+    <label for="pf-nombre">Nombre y apellido *</label>
+    <input id="pf-nombre" class="fld" maxlength="120" placeholder="Ej: María González" autocomplete="name">
+    <label for="pf-titulo">¿Qué sabes hacer? (tu titular) *</label>
+    <input id="pf-titulo" class="fld" maxlength="140" placeholder="Ej: Electricista con 10 años de experiencia">
+    <label for="pf-tipo">¿Qué buscas? *</label>
+    <select id="pf-tipo" class="fld">
+      <option value="ambos">Empleo y también puedo ser voluntario/a</option>
+      <option value="busco_empleo">Busco empleo</option>
+      <option value="voluntario">Quiero ser voluntario/a</option>
+    </select>
+    <label class="check" style="margin-top:.2rem"><input type="checkbox" id="pf-perdio"><span><b>Mi lugar de trabajo ya no existe</b> por el sismo (tu perfil se marca para darle prioridad).</span></label>
+    <label for="pf-sector">Sector / área *</label>
+    <select id="pf-sector" class="fld"></select>
+    <label for="pf-exp">Tu experiencia</label>
+    <textarea id="pf-exp" class="fld" rows="3" maxlength="600" placeholder="Ej: 10 años en instalaciones eléctricas residenciales. Trabajé en la constructora X hasta el sismo."></textarea>
+    <label for="pf-hab">Habilidades (separadas por ·)</label>
+    <input id="pf-hab" class="fld" maxlength="300" placeholder="Ej: Electricidad · Plomería básica · Manejo de camión">
+    <label for="pf-disp">Disponibilidad</label>
+    <input id="pf-disp" class="fld" maxlength="140" placeholder="Ej: Inmediata, tiempo completo · Fines de semana">
+    <div class="selrow" style="margin:0 0 .7rem">
+      <select id="pf-modalidad" class="fld" style="margin:0">
+        <option value="presencial" selected>Presencial</option>
+        <option value="remoto">Remoto</option>
+        <option value="ambas">Presencial o remoto</option>
+      </select>
+    </div>
+    <label for="pf-estado">Estado *</label>
+    <input id="pf-estado" class="fld" list="estados-dl" maxlength="40" placeholder="Ej: Carabobo">
+    <datalist id="estados-dl"></datalist>
+    <label for="pf-ciudad">Ciudad *</label>
+    <input id="pf-ciudad" class="fld" maxlength="80" placeholder="Ej: Valencia">
+    <label for="pf-wa">WhatsApp (será público para que te contacten) *</label>
+    <input id="pf-wa" class="fld" inputmode="tel" maxlength="40" placeholder="Ej: 0414-1234567">
+    <label for="pf-ig">Instagram (opcional)</label>
+    <input id="pf-ig" class="fld" maxlength="120" placeholder="@tu_usuario">
+    <label class="check"><input type="checkbox" id="pf-consent"><span>Autorizo publicar estos datos (incluido mi WhatsApp) para que me contacten por trabajo o voluntariado. *</span></label>
+    <button id="pf-send" class="send">Publicar mi perfil</button>
+    <button class="cancel" data-close>Cancelar</button>
+  </div>
+</div>
+
+<div id="sheet-clave" class="scrim" role="dialog" aria-modal="true" aria-label="Tu clave">
+  <div class="sheet">
+    <div class="grip"></div>
+    <h2 id="clave-title">✅ ¡Publicado!</h2>
+    <p class="hint" id="clave-hint">Guarda tu <b>clave de gestión</b>. <b>Solo se muestra esta vez.</b></p>
+    <div class="clave-box">
+      <p>Tu clave de gestión</p>
+      <div class="cl" id="clave-num">——————</div>
+      <p>Anótala o tómale captura ahora.</p>
+    </div>
+    <button id="clave-copy" class="send dark">Copiar clave</button>
+    <button class="send" data-close style="margin-top:.6rem">Ya la guardé</button>
+  </div>
+</div>
+
+<div id="sheet-mi-perfil" class="scrim" role="dialog" aria-modal="true" aria-label="Gestionar mi perfil">
+  <div class="sheet">
+    <div class="grip"></div>
+    <h2>Gestionar mi perfil</h2>
+    <p class="hint">Márcate disponible o no, actualiza tu disponibilidad, o retira tu perfil si ya conseguiste.</p>
+    <label for="mp-perfil">¿Quién eres?</label>
+    <select id="mp-perfil" class="fld"><option value="">Elige tu nombre…</option></select>
+    <label for="mp-clave">Tu clave de gestión *</label>
+    <input id="mp-clave" class="fld" inputmode="numeric" maxlength="6" placeholder="La clave de 6 dígitos que guardaste">
+    <label for="mp-disp">Actualizar disponibilidad (opcional)</label>
+    <input id="mp-disp" class="fld" maxlength="140" placeholder="Ej: Disponible desde el lunes · Solo mañanas">
+    <div style="display:flex;gap:.5rem">
+      <button id="mp-on" class="send" style="flex:1">🟢 Estoy disponible</button>
+      <button id="mp-off" class="send dark" style="flex:1">No disponible</button>
+    </div>
+    <button id="mp-retirar" class="send" style="margin-top:.6rem;background:var(--surface);color:var(--bad);border:1.5px solid #f3cdc9;box-shadow:var(--shadow-s)">🎉 Ya conseguí — retirar mi perfil</button>
+    <button class="cancel" data-close>Cerrar</button>
+  </div>
+</div>
+
+<div id="sheet-solicitud" class="scrim" role="dialog" aria-modal="true" aria-label="Publicar vacante o petición">
+  <div class="sheet">
+    <div class="grip"></div>
+    <h2>Publicar vacante o petición</h2>
+    <p class="hint">Para empresas, instituciones y también personas. Tu teléfono se publica <b>oculto</b> — solo lo recibe quien se postule identificándose.</p>
+    <label for="so-quien">¿Quién publica? *</label>
+    <select id="so-quien" class="fld">
+      <option value="empresa">Una empresa / negocio</option>
+      <option value="hospital">Un hospital / centro de salud</option>
+      <option value="ong">Una ONG / fundación</option>
+      <option value="alcaldia">Alcaldía / institución pública</option>
+      <option value="iglesia">Una iglesia</option>
+      <option value="escuela">Un colegio / escuela</option>
+      <option value="acopio">Un centro de acopio</option>
+      <option value="refugio">Un refugio</option>
+      <option value="persona">Una persona (necesito ayuda en casa/comunidad)</option>
+      <option value="otro">Otro</option>
+    </select>
+    <div id="so-inst-box">
+      <label for="so-inst">Nombre de la empresa / institución *</label>
+      <input id="so-inst" class="fld" maxlength="160" placeholder="Ej: Constructora El Futuro · Centro de Acopio La Candelaria">
+    </div>
+    <label for="so-puesto">¿Qué ofreces o pides? *</label>
+    <select id="so-puesto" class="fld">
+      <option value="voluntariado">Pido voluntarios (sin pago)</option>
+      <option value="empleo">Ofrezco empleo (pagado)</option>
+      <option value="temporal">Trabajo temporal / por días</option>
+    </select>
+    <label for="so-titulo">Título de la publicación *</label>
+    <input id="so-titulo" class="fld" maxlength="140" placeholder="Ej: Se necesitan 10 voluntarios para remover escombros">
+    <label for="so-sector">Sector / área *</label>
+    <select id="so-sector" class="fld"></select>
+    <label for="so-desc">Describe la necesidad *</label>
+    <textarea id="so-desc" class="fld" rows="3" maxlength="600" placeholder="Ej: Necesitamos ayuda este fin de semana para clasificar donaciones y cargar camiones. Traer guantes si tienen."></textarea>
+    <label for="so-personas">¿Cuántas personas? (opcional)</label>
+    <input id="so-personas" class="fld" inputmode="numeric" maxlength="6" placeholder="Ej: 10">
+    <div class="selrow" style="margin:0 0 .7rem">
+      <select id="so-urgencia" class="fld" style="margin:0">
+        <option value="normal">Puede esperar unos días</option>
+        <option value="urgente">🔴 Es urgente</option>
+      </select>
+    </div>
+    <div id="so-pago-box" class="hide">
+      <label for="so-pago">Pago / remuneración (opcional pero recomendado)</label>
+      <input id="so-pago" class="fld" maxlength="80" placeholder="Ej: $10/día + comida · Salario a convenir">
+    </div>
+    <label for="so-estado">Estado *</label>
+    <input id="so-estado" class="fld" list="estados-dl" maxlength="40" placeholder="Ej: Aragua">
+    <label for="so-ciudad">Ciudad *</label>
+    <input id="so-ciudad" class="fld" maxlength="80" placeholder="Ej: Maracay">
+    <label for="so-nombre">Tu nombre (contacto responsable) *</label>
+    <input id="so-nombre" class="fld" maxlength="120" placeholder="¿Quién recibe a la gente?">
+    <label for="so-tel">Teléfono de contacto *</label>
+    <input id="so-tel" class="fld" inputmode="tel" maxlength="40" placeholder="Se muestra oculto: ····1234">
+    <label class="check"><input type="checkbox" id="so-consent"><span>Declaro que esta necesidad es real y autorizo publicarla. Entiendo que <b>pedir dinero a los postulantes está prohibido</b>. *</span></label>
+    <button id="so-send" class="send">Publicar</button>
+    <button class="cancel" data-close>Cancelar</button>
+  </div>
+</div>
+
+<div id="sheet-postular" class="scrim" role="dialog" aria-modal="true" aria-label="Postularme">
+  <div class="sheet">
+    <div class="grip"></div>
+    <h2 id="po-title">Postularme</h2>
+    <p class="hint">Identifícate y recibe el contacto completo de quien publicó. Ellos también verán tus datos entre sus postulaciones.</p>
+    <label for="po-nombre">Tu nombre y apellido *</label>
+    <input id="po-nombre" class="fld" maxlength="120" placeholder="Ej: Carlos Pérez">
+    <label for="po-tel">Tu teléfono (WhatsApp) *</label>
+    <input id="po-tel" class="fld" inputmode="tel" maxlength="40" placeholder="Ej: 0416-1234567">
+    <label for="po-msg">Mensaje corto (opcional)</label>
+    <textarea id="po-msg" class="fld" rows="2" maxlength="400" placeholder="Ej: Soy enfermero, disponible desde mañana."></textarea>
+    <button id="po-send" class="send">Postularme — dame el contacto</button>
+    <div id="po-result"></div>
+    <button class="cancel" data-close>Cancelar</button>
+  </div>
+</div>
+
+<div id="sheet-mi-solicitud" class="scrim" role="dialog" aria-modal="true" aria-label="Gestionar mi publicación">
+  <div class="sheet">
+    <div class="grip"></div>
+    <h2>Gestionar mi publicación</h2>
+    <p class="hint">Revisa quién se postuló y marca la vacante como cubierta cuando ya no necesites más gente.</p>
+    <label for="ms-sol">¿Cuál publicación?</label>
+    <select id="ms-sol" class="fld"><option value="">Elige tu publicación…</option></select>
+    <label for="ms-clave">Tu clave de gestión *</label>
+    <input id="ms-clave" class="fld" inputmode="numeric" maxlength="6" placeholder="La clave de 6 dígitos que guardaste">
+    <button id="ms-ver" class="send">📋 Ver postulaciones</button>
+    <div id="ms-list"></div>
+    <div style="display:flex;gap:.5rem;margin-top:.6rem">
+      <button id="ms-cubierta" class="send dark" style="flex:1">✅ Marcar cubierta</button>
+      <button id="ms-reabrir" class="send" style="flex:1;background:var(--surface);color:var(--brand-deep);border:1.5px solid var(--line);box-shadow:var(--shadow-s)">Reabrir</button>
+    </div>
+    <button class="cancel" data-close>Cerrar</button>
+  </div>
+</div>
+
+<div id="sheet-abuso" class="scrim" role="dialog" aria-modal="true" aria-label="Reportar">
+  <div class="sheet">
+    <div class="grip"></div>
+    <h2>Reportar</h2>
+    <p class="hint" id="abuso-sub">Tu reporte ayuda a moderar la red.</p>
+    <label>¿Qué ocurre? *</label>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap" id="abuso-op">
+      <button class="chip" data-m="Es falso / no existe">Es falso</button>
+      <button class="chip" data-m="Piden dinero por el puesto">Piden dinero 🚩</button>
+      <button class="chip" data-m="Conducta inapropiada">Conducta inapropiada</button>
+      <button class="chip" data-m="Datos incorrectos">Datos incorrectos</button>
+    </div>
+    <input id="abuso-nota" class="fld" maxlength="160" placeholder="Detalle (opcional)" style="margin-top:.7rem">
+    <button id="abuso-send" class="send">Enviar reporte</button>
+    <button class="cancel" data-close>Cancelar</button>
+  </div>
+</div>
+
+<div id="sheet-guia" class="scrim" role="dialog" aria-modal="true" aria-label="Cómo funciona">
+  <div class="sheet">
+    <div class="grip"></div>
+    <h2>Cómo funciona</h2>
+    <p class="hint">Red gratuita y comunitaria de <b>trabajo y voluntariado</b> tras el sismo. Hermana de <b>hospitalesenvenezuela.com</b> y <b>psicologosenvenezuela.com</b>.</p>
+    <div style="display:flex;gap:.8rem;margin-bottom:1rem"><span style="flex:none;width:2.1rem;height:2.1rem;border-radius:.7rem;background:var(--brand-soft);color:var(--brand-deep);font-weight:800;display:flex;align-items:center;justify-content:center">1</span><div><b style="font-size:1rem">Publica tu perfil</b><div style="font-size:.92rem;color:var(--ink-2);margin-top:.15rem">Si perdiste tu trabajo o quieres ser voluntario: tu experiencia, habilidades y disponibilidad, con tu WhatsApp para que te contacten directo.</div></div></div>
+    <div style="display:flex;gap:.8rem;margin-bottom:1rem"><span style="flex:none;width:2.1rem;height:2.1rem;border-radius:.7rem;background:var(--brand-soft);color:var(--brand-deep);font-weight:800;display:flex;align-items:center;justify-content:center">2</span><div><b style="font-size:1rem">Publica lo que necesitas</b><div style="font-size:.92rem;color:var(--ink-2);margin-top:.15rem">Empresas, hospitales, acopios, refugios, iglesias y vecinos piden <b>voluntarios o personal</b>. El teléfono va oculto y recibes las postulaciones con tu clave.</div></div></div>
+    <div style="display:flex;gap:.8rem;margin-bottom:1rem"><span style="flex:none;width:2.1rem;height:2.1rem;border-radius:.7rem;background:var(--brand-soft);color:var(--brand-deep);font-weight:800;display:flex;align-items:center;justify-content:center">3</span><div><b style="font-size:1rem">Conéctense directo</b><div style="font-size:.92rem;color:var(--ink-2);margin-top:.15rem">Sin intermediarios ni comisiones. Acuerdan entre ustedes por WhatsApp o teléfono.</div></div></div>
+    <p style="font-size:.84rem;color:var(--muted);border-top:1px solid var(--line-2);padding-top:.9rem"><b>Regla de oro:</b> aquí <b>nadie paga por conseguir trabajo</b> ni por conseguir voluntarios. Si alguien te pide dinero, repórtalo con el botón de la bandera. La plataforma es comunitaria y no se responsabiliza por los acuerdos entre las partes — verifica siempre con quién hablas.</p>
+    <button id="guia-ok" class="send">Entendido</button>
+  </div>
+</div>
+
+<button id="share-fab" class="share-fab" aria-label="Compartir">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+  Compartir
+</button>
+
+<div id="toast"></div>
+
+<script>
+const SUPABASE_URL      = "https://ozuxfepfkvnxkywdsqxy.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im96dXhmZXBma3ZueGt5d2RzcXh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MjI5NTEsImV4cCI6MjA5Nzk5ODk1MX0.YhW0GalGkQZdO2NJTg_01C5XhdMmJ6RbNSNXXC0xG4o";
+
+const CACHE_KEY="emp_cache_v1", SEEN_KEY="emp_seen_guia", FS_KEY="emp_fontscale", DEV_KEY="emp_dev", MI_PERFIL_KEY="emp_mi_perfil", MI_SOL_KEY="emp_mi_sol";
+const ESTADOS_VE=["Amazonas","Anzoátegui","Apure","Aragua","Barinas","Bolívar","Carabobo","Cojedes","Delta Amacuro","Distrito Capital","Falcón","Guárico","La Guaira","Lara","Mérida","Miranda","Monagas","Nueva Esparta","Portuguesa","Sucre","Táchira","Trujillo","Yaracuy","Zulia"];
+const SECTORES={
+  construccion:"Construcción y escombros",
+  salud:"Salud y enfermería",
+  cuidado:"Cuidado de niños y mayores",
+  educacion:"Educación",
+  cocina:"Cocina y alimentación",
+  logistica:"Logística y transporte",
+  comercio:"Comercio y ventas",
+  administracion:"Administración y contabilidad",
+  oficios:"Oficios (electricidad, plomería, albañilería…)",
+  tecnologia:"Tecnología y sistemas",
+  comunicacion:"Comunicación y redes",
+  legal:"Legal",
+  psicosocial:"Apoyo psicosocial",
+  limpieza:"Limpieza y mantenimiento",
+  seguridad:"Seguridad",
+  agro:"Agro y campo",
+  otro:"Otro"
+};
+
+let PERFILES=[], SOLS=[], filtro="todos", vfiltro="todas", view="personas";
+
+/* ---------- utils ---------- */
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
+function $(id){return document.getElementById(id);}
+function toast(msg,kind){const t=$("toast");t.textContent=msg;t.className="show"+(kind?(" "+kind):"");clearTimeout(t._t);t._t=setTimeout(()=>t.className="",3200);}
+function norm(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9 ]+/g," ").replace(/\s+/g," ").trim();}
+function soloDig(s){return String(s||"").replace(/\D/g,"");}
+function hace(ts){if(!ts)return"";const d=(Date.now()-new Date(ts).getTime())/1000;if(d<60)return"hace instantes";if(d<3600)return"hace "+Math.floor(d/60)+" min";if(d<86400)return"hace "+Math.floor(d/3600)+" h";const dd=Math.floor(d/86400);return"hace "+dd+(dd===1?" día":" días");}
+function getDeviceId(){try{let d=localStorage.getItem(DEV_KEY);if(!d){d=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():("dev-"+Date.now()+"-"+Math.random().toString(36).slice(2));localStorage.setItem(DEV_KEY,d);}return d;}catch(e){return "dev-"+Date.now()+Math.random().toString(36).slice(2);}}
+function waLink(num,txt){const d=soloDig(num);const n=d.startsWith("58")?d:(d.startsWith("0")?("58"+d.slice(1)):("58"+d));return "https://wa.me/"+n+(txt?("?text="+encodeURIComponent(txt)):"");}
+function igLink(h){return "https://instagram.com/"+String(h||"").replace(/^@/,"").trim();}
+
+/* ---------- API ---------- */
+function api(path,opts){opts=opts||{};return fetch(SUPABASE_URL+"/rest/v1/"+path,Object.assign({},opts,{headers:Object.assign({"apikey":SUPABASE_ANON_KEY,"Authorization":"Bearer "+SUPABASE_ANON_KEY,"Content-Type":"application/json"},opts.headers||{})}));}
+async function callRPC(name,body){
+  const r=await api("rpc/"+name,{method:"POST",body:JSON.stringify(body||{})});
+  if(!r.ok){let m="";try{const e=await r.json();m=(e&&(e.message||e.error||e.hint))||"";}catch(_){}throw new Error(m||"rpc");}
+  return await r.json().catch(()=>({}));
+}
+function motivo(err){
+  const m=(((err&&err.message)||"")+"").toLowerCase();
+  if(/limite|rate/.test(m))return "Alcanzaste el límite por ahora. Inténtalo en un rato.";
+  if(/nombre_incompleto/.test(m))return "Escribe tu nombre y apellido completos.";
+  if(/titulo_requerido/.test(m))return "Escribe un título claro.";
+  if(/whatsapp_requerido/.test(m))return "Escribe tu WhatsApp para que puedan contactarte.";
+  if(/telefono_requerido/.test(m))return "Escribe un teléfono válido.";
+  if(/descripcion_corta/.test(m))return "Describe un poco más (mínimo 10 caracteres).";
+  if(/clave_invalida/.test(m))return "Esa clave no coincide. Revisa los 6 dígitos que guardaste.";
+  if(/ya_cubierta/.test(m))return "Esa publicación ya fue cubierta o cerrada.";
+  if(/no_existe/.test(m))return "No encontramos ese registro. Refresca la página.";
+  if(/duplicad/.test(m))return "Ya existe un perfil con ese nombre y WhatsApp.";
+  return "No se pudo completar. Revisa tu internet e inténtalo de nuevo.";
+}
+
+/* ---------- contadores ---------- */
+function animarNum(el,target){
+  if(!el)return; target=Math.max(0,target|0);
+  const fmt=n=>n.toLocaleString("es-VE");
+  const start=parseInt(String(el.textContent||"").replace(/\D/g,""))||0;
+  el.__t=target;
+  if(start===target||document.hidden||typeof requestAnimationFrame!=="function"){el.textContent=fmt(target);return;}
+  const dur=650,t0=performance.now();
+  function step(t){if(el.__t!==target)return;const p=Math.min(1,(t-t0)/dur);el.textContent=fmt(Math.round(start+(target-start)*(1-Math.pow(1-p,3))));if(p<1)requestAnimationFrame(step);}
+  setTimeout(()=>{if(el.__t===target)el.textContent=fmt(target);},dur+150);
+  requestAnimationFrame(step);
+}
+async function cargarStats(){
+  try{const s=await callRPC("emp_estadisticas",{});
+    if(s&&typeof s==="object"){animarNum($("stat-perf"),s.perfiles||0);animarNum($("stat-disp"),s.disponibles||0);animarNum($("stat-sol"),s.solicitudes_abiertas||0);}
+  }catch(e){}
+}
+
+/* ---------- data ---------- */
+async function cargarPerfiles(){const r=await callRPC("emp_listar_perfiles",{});PERFILES=Array.isArray(r)?r:[];try{localStorage.setItem(CACHE_KEY,JSON.stringify({t:Date.now(),p:PERFILES}));}catch(e){}}
+async function cargarSols(){const r=await callRPC("emp_listar_solicitudes",{});SOLS=Array.isArray(r)?r:[];}
+
+/* ---------- selects ---------- */
+const TIPO_PERFIL={busco_empleo:"Busca empleo",voluntario:"Voluntario/a",ambos:"Empleo o voluntariado"};
+const MODAL={presencial:"Presencial",remoto:"Remoto",ambas:"Presencial o remoto"};
+const PUESTO={voluntariado:"Voluntariado",empleo:"Empleo",temporal:"Temporal"};
+const SOLIC={empresa:"Empresa",institucion:"Institución",hospital:"Hospital",ong:"ONG",alcaldia:"Institución pública",iglesia:"Iglesia",escuela:"Colegio",acopio:"Centro de acopio",refugio:"Refugio",persona:"Persona",otro:"Otro"};
+function poblarSectores(){
+  const ops='<option value="">Todos los sectores</option>'+Object.keys(SECTORES).map(k=>`<option value="${k}">${esc(SECTORES[k])}</option>`).join("");
+  const opsSel=Object.keys(SECTORES).map(k=>`<option value="${k}">${esc(SECTORES[k])}</option>`).join("");
+  if($("f-sector"))$("f-sector").innerHTML=ops;
+  if($("vf-sector"))$("vf-sector").innerHTML=ops;
+  if($("pf-sector"))$("pf-sector").innerHTML=opsSel;
+  if($("so-sector"))$("so-sector").innerHTML=opsSel;
+  const dl=$("estados-dl");if(dl&&!dl.children.length)dl.innerHTML=ESTADOS_VE.map(e=>`<option value="${esc(e)}">`).join("");
+}
+function poblarEstadosSel(){
+  const fill=(selId,src,keyFn)=>{const sel=$(selId);if(!sel)return;const es=[...new Set(src.map(keyFn))].filter(x=>x&&x!=="Por confirmar").sort((a,b)=>a.localeCompare(b,'es'));const cur=sel.value;sel.innerHTML='<option value="">Todos los estados</option>'+es.map(e=>`<option value="${esc(e)}">${esc(e)}</option>`).join("");if(es.includes(cur))sel.value=cur;};
+  fill("f-estado",PERFILES,p=>p.estado);
+  fill("vf-estado",SOLS,s=>s.estado);
+}
+
+/* ---------- render perfiles ---------- */
+function aplicarFiltrosPerfil(){
+  const q=norm($("q").value),sec=$("f-sector").value,est=$("f-estado").value;
+  return PERFILES.filter(p=>{
+    if(sec&&p.sector!==sec)return false;
+    if(est&&p.estado!==est)return false;
+    if(filtro==="disponibles"&&!p.disponible)return false;
+    if(filtro==="empleo"&&!(p.tipo==="busco_empleo"||p.tipo==="ambos"))return false;
+    if(filtro==="voluntario"&&!(p.tipo==="voluntario"||p.tipo==="ambos"))return false;
+    if(filtro==="perdio"&&!p.perdio_trabajo)return false;
+    if(q&&!norm([p.nombre,p.titulo,p.habilidades,p.experiencia,p.ciudad,p.estado,SECTORES[p.sector]].join(" ")).includes(q))return false;
+    return true;
+  });
+}
+function perfilCard(p){
+  const wa=p.whatsapp?`<a class="act wa" href="${esc(waLink(p.whatsapp,"Hola "+p.nombre.split(" ")[0]+", vi tu perfil en empleoenvenezuela.com y quiero hablar contigo."))}" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.4 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Contactar por WhatsApp</a>`:"";
+  const ig=p.instagram?`<a class="act" href="${esc(igLink(p.instagram))}" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg>Instagram</a>`:"";
+  const tags=[`<span class="tag t-${esc(p.tipo==="busco_empleo"?"empleo":p.tipo)}">${esc(TIPO_PERFIL[p.tipo]||"")}</span>`,`<span class="tag">${esc(SECTORES[p.sector]||p.sector||"")}</span>`];
+  if(p.perdio_trabajo)tags.push('<span class="tag t-perdio">Su trabajo ya no existe</span>');
+  return `<li class="card" data-id="${esc(p.id)}">
+    <div class="card-top"><div>
+      <p class="name">${esc(p.nombre)}</p>
+      <p class="titulo">${esc(p.titulo)}</p>
+    </div><span class="badge ${p.disponible?"b-on":"b-off"}"><span class="d"></span>${p.disponible?"Disponible":"No disponible"}</span></div>
+    <p class="sub">${tags.join("")}</p>
+    ${p.experiencia?`<div class="bio">${esc(p.experiencia)}</div>`:""}
+    ${p.habilidades?`<div class="meta">💠 ${esc(p.habilidades)}</div>`:""}
+    <div class="meta">${p.disponibilidad?("🕒 "+esc(p.disponibilidad)+" · "):""}${esc(MODAL[p.modalidad]||"")} · ${esc(p.ciudad)}, ${esc(p.estado)} · ${esc(hace(p.creado))}</div>
+    <div class="row-actions">${wa}${ig}</div>
+    <button class="flag" data-flag="${esc(p.id)}" data-name="${esc(p.nombre)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4h13l-1.5 4 1.5 4H4"/></svg>Reportar</button>
+  </li>`;
+}
+function renderPerfiles(){
+  const rows=aplicarFiltrosPerfil(),list=$("list"),empty=$("empty");
+  $("count").textContent=rows.length+(rows.length===1?" persona":" personas");
+  if(!rows.length){list.innerHTML="";empty.classList.remove("hide");empty.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><div>'+(PERFILES.length?"No hay nadie con ese filtro. Prueba con otro.":"<b>Sé el primero en publicar tu perfil.</b><br>Tu experiencia vale — deja que te encuentren.")+'</div>';return;}
+  empty.classList.add("hide");list.innerHTML=rows.map(perfilCard).join("");
+}
+
+/* ---------- render solicitudes ---------- */
+function aplicarFiltrosSol(){
+  const q=norm($("vq").value),sec=$("vf-sector").value,est=$("vf-estado").value;
+  return SOLS.filter(s=>{
+    if(sec&&s.sector!==sec)return false;
+    if(est&&s.estado!==est)return false;
+    if(vfiltro==="voluntariado"&&s.puesto_tipo!=="voluntariado")return false;
+    if(vfiltro==="empleo"&&!(s.puesto_tipo==="empleo"||s.puesto_tipo==="temporal"))return false;
+    if(vfiltro==="urgente"&&s.urgencia!=="urgente")return false;
+    if(q&&!norm([s.titulo,s.descripcion,s.institucion,s.ciudad,s.estado,SECTORES[s.sector]].join(" ")).includes(q))return false;
+    return true;
+  });
+}
+function solCard(s){
+  const abierta=s.estado_solicitud==="abierta";
+  const badge=abierta?(s.urgencia==="urgente"?'<span class="badge b-urg"><span class="d"></span>Urgente</span>':'<span class="badge b-nor"><span class="d"></span>Abierta</span>'):'<span class="badge b-cub"><span class="d"></span>Cubierta</span>';
+  const quien=`${SOLIC[s.solicitante_tipo]||"Otro"}${s.institucion?": <b>"+esc(s.institucion)+"</b>":""}`;
+  return `<li class="card" data-id="${esc(s.id)}">
+    <div class="card-top"><div>
+      <p class="name">${esc(s.titulo)}</p>
+      <p class="sub"><span class="tag t-${esc(s.puesto_tipo==="empleo"?"empleo":(s.puesto_tipo==="temporal"?"temporal":"voluntario"))}">${esc(PUESTO[s.puesto_tipo]||"")}</span><span class="tag">${esc(SECTORES[s.sector]||s.sector||"")}</span></p>
+    </div>${badge}</div>
+    <div class="bio">${esc(s.descripcion)}</div>
+    <div class="meta">Publica: ${quien} · ${esc(s.ciudad)}, ${esc(s.estado)}${s.personas?` · ~${esc(s.personas)} personas`:""}${s.pago?` · 💵 ${esc(s.pago)}`:""}</div>
+    <div class="meta">Contacto: ${esc(s.telefono_mask||"····")} · ${s.postulaciones>0?(s.postulaciones+(s.postulaciones===1?" postulación · ":" postulaciones · ")):""}${esc(hace(s.creado))}</div>
+    ${abierta?`<div class="row-actions"><button class="act" data-postular="${esc(s.id)}" data-titulo="${esc(s.titulo)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>${s.puesto_tipo==="voluntariado"?"Quiero ayudar":"Postularme"}</button></div>`:""}
+    <button class="flag" data-flagsol="${esc(s.id)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4h13l-1.5 4 1.5 4H4"/></svg>Reportar</button>
+  </li>`;
+}
+function renderSols(){
+  const rows=aplicarFiltrosSol(),list=$("vlist"),empty=$("vempty");
+  $("vcount").textContent=rows.length+(rows.length===1?" publicación":" publicaciones");
+  if(!rows.length){list.innerHTML="";empty.classList.remove("hide");empty.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/></svg><div>'+(SOLS.length?"No hay publicaciones con ese filtro.":"<b>Aún no hay vacantes ni peticiones.</b><br>Publica la primera — es gratis y tu teléfono va oculto.")+'</div>';return;}
+  empty.classList.add("hide");list.innerHTML=rows.map(solCard).join("");
+}
+
+/* ---------- navegación ---------- */
+function setView(v){
+  view=v;$("segmented").setAttribute("data-i",v==="vacantes"?1:0);
+  document.querySelectorAll(".seg").forEach(s=>s.classList.toggle("on",s.getAttribute("data-view")===v));
+  $("view-personas").classList.toggle("hide",v!=="personas");
+  $("view-vacantes").classList.toggle("hide",v!=="vacantes");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".seg").forEach(s=>s.addEventListener("click",()=>setView(s.getAttribute("data-view"))));
+
+/* ---------- sheets ---------- */
+function abrir(id){$(id).classList.add("open");document.body.style.overflow="hidden";}
+function cerrarSheets(){document.querySelectorAll(".scrim.open").forEach(s=>s.classList.remove("open"));document.body.style.overflow="";}
+document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",cerrarSheets));
+document.querySelectorAll(".scrim").forEach(s=>s.addEventListener("click",e=>{if(e.target===s)cerrarSheets();}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")cerrarSheets();});
+$("cta-perfil").addEventListener("click",()=>abrir("sheet-perfil"));
+$("cta-perfil-2").addEventListener("click",()=>abrir("sheet-perfil"));
+$("cta-mi-perfil").addEventListener("click",()=>{poblarMiPerfil();abrir("sheet-mi-perfil");});
+$("cta-solicitud").addEventListener("click",()=>abrir("sheet-solicitud"));
+$("cta-mi-solicitud").addEventListener("click",()=>{poblarMiSol();abrir("sheet-mi-solicitud");});
+$("btn-guia").addEventListener("click",()=>abrir("sheet-guia"));
+$("guia-ok").addEventListener("click",()=>{try{localStorage.setItem(SEEN_KEY,"1");}catch(e){}cerrarSheets();});
+$("so-quien").addEventListener("change",()=>{$("so-inst-box").classList.toggle("hide",$("so-quien").value==="persona");});
+$("so-puesto").addEventListener("change",()=>{$("so-pago-box").classList.toggle("hide",$("so-puesto").value==="voluntariado");});
+
+/* ---------- publicar perfil ---------- */
+$("pf-send").addEventListener("click",async ()=>{
+  const nombre=($("pf-nombre").value||"").trim(),titulo=($("pf-titulo").value||"").trim();
+  if(nombre.replace(/[^A-Za-zÀ-ÿñÑ ]/g,"").trim().length<5||!nombre.includes(" ")){toast("Escribe tu nombre y apellido","err");$("pf-nombre").focus();return;}
+  if(titulo.length<5){toast("Escribe tu titular: ¿qué sabes hacer?","err");$("pf-titulo").focus();return;}
+  if(soloDig($("pf-wa").value).length<7){toast("Escribe tu WhatsApp","err");$("pf-wa").focus();return;}
+  const est=($("pf-estado").value||"").trim(),ciu=($("pf-ciudad").value||"").trim();
+  if(!est||!ciu){toast("Completa estado y ciudad","err");return;}
+  if(!$("pf-consent").checked){toast("Marca la autorización para publicar tu perfil","err");return;}
+  const btn=$("pf-send");btn.disabled=true;btn.textContent="Publicando…";
+  try{
+    const res=await callRPC("emp_registrar_perfil",{
+      p_nombre:nombre,p_titulo:titulo,p_tipo:$("pf-tipo").value,
+      p_perdio_trabajo:$("pf-perdio").checked,p_sector:$("pf-sector").value||"otro",
+      p_experiencia:($("pf-exp").value||"").trim()||null,p_habilidades:($("pf-hab").value||"").trim()||null,
+      p_disponibilidad:($("pf-disp").value||"").trim()||null,p_modalidad:$("pf-modalidad").value,
+      p_estado:est,p_ciudad:ciu,p_whatsapp:($("pf-wa").value||"").trim(),
+      p_instagram:($("pf-ig").value||"").trim()||null,p_device:getDeviceId()
+    });
+    if(res&&res.duplicado){toast("Ya existe un perfil con ese nombre y WhatsApp","err");return;}
+    if(res&&res.ok){
+      try{localStorage.setItem(MI_PERFIL_KEY,res.id);}catch(e){}
+      cerrarSheets();
+      ["pf-nombre","pf-titulo","pf-exp","pf-hab","pf-disp","pf-estado","pf-ciudad","pf-wa","pf-ig"].forEach(i=>$(i).value="");
+      $("pf-consent").checked=false;$("pf-perdio").checked=false;
+      $("clave-title").textContent="✅ ¡Tu perfil está publicado!";
+      $("clave-hint").innerHTML="Guarda tu <b>clave de gestión</b>: con ella te marcas disponible o retiras tu perfil cuando consigas. <b>Solo se muestra esta vez.</b>";
+      $("clave-num").textContent=res.clave||"——————";
+      setTimeout(()=>abrir("sheet-clave"),200);
+      refrescarPerfiles();cargarStats();
+    }
+  }catch(err){toast(motivo(err),"err");}
+  finally{btn.disabled=false;btn.textContent="Publicar mi perfil";}
+});
+$("clave-copy").addEventListener("click",async ()=>{
+  try{await navigator.clipboard.writeText($("clave-num").textContent.trim());toast("Clave copiada","ok");}
+  catch(e){toast("Cópiala manualmente","err");}
+});
+
+/* ---------- gestionar perfil ---------- */
+function poblarMiPerfil(){
+  const sel=$("mp-perfil");const miId=(function(){try{return localStorage.getItem(MI_PERFIL_KEY);}catch(e){return null;}})();
+  sel.innerHTML='<option value="">Elige tu nombre…</option>'+PERFILES.map(p=>`<option value="${esc(p.id)}"${p.id===miId?" selected":""}>${esc(p.nombre)} — ${esc(p.titulo)}</option>`).join("");
+}
+async function miPerfilAccion(params,msgOk){
+  const id=$("mp-perfil").value,clave=($("mp-clave").value||"").trim();
+  if(!id){toast("Elige tu nombre en la lista","err");return;}
+  if(clave.length<6){toast("Escribe tu clave de 6 dígitos","err");return;}
+  try{
+    await callRPC("emp_actualizar_perfil",Object.assign({p_id:id,p_clave:clave,p_disponibilidad:($("mp-disp").value||"").trim()||null},params));
+    try{localStorage.setItem(MI_PERFIL_KEY,id);}catch(e){}
+    toast(msgOk,"ok");cerrarSheets();refrescarPerfiles();cargarStats();
+  }catch(err){toast(motivo(err),"err");}
+}
+$("mp-on").addEventListener("click",()=>miPerfilAccion({p_disponible:true},"🟢 Apareces como disponible"));
+$("mp-off").addEventListener("click",()=>miPerfilAccion({p_disponible:false},"Marcado como no disponible"));
+$("mp-retirar").addEventListener("click",()=>miPerfilAccion({p_activo:false},"🎉 ¡Felicidades! Tu perfil fue retirado"));
+
+/* ---------- publicar solicitud ---------- */
+$("so-send").addEventListener("click",async ()=>{
+  const quien=$("so-quien").value,inst=($("so-inst").value||"").trim();
+  if(quien!=="persona"&&inst.length<2){toast("Escribe el nombre de la empresa o institución","err");$("so-inst").focus();return;}
+  const titulo=($("so-titulo").value||"").trim();
+  if(titulo.length<5){toast("Escribe un título claro","err");$("so-titulo").focus();return;}
+  const desc=($("so-desc").value||"").trim();
+  if(desc.length<10){toast("Describe un poco más la necesidad","err");$("so-desc").focus();return;}
+  const est=($("so-estado").value||"").trim(),ciu=($("so-ciudad").value||"").trim();
+  if(!est||!ciu){toast("Completa estado y ciudad","err");return;}
+  const nom=($("so-nombre").value||"").trim();
+  if(nom.length<2){toast("Escribe tu nombre (contacto)","err");return;}
+  if(soloDig($("so-tel").value).length<7){toast("Escribe un teléfono de contacto","err");return;}
+  if(!$("so-consent").checked){toast("Marca la declaración para publicar","err");return;}
+  const btn=$("so-send");btn.disabled=true;btn.textContent="Publicando…";
+  try{
+    const res=await callRPC("emp_crear_solicitud",{
+      p_solicitante_tipo:quien,p_nombre:nom,p_telefono:($("so-tel").value||"").trim(),
+      p_titulo:titulo,p_descripcion:desc,p_puesto_tipo:$("so-puesto").value,p_sector:$("so-sector").value||"otro",
+      p_institucion:quien==="persona"?null:inst,p_estado:est,p_ciudad:ciu,
+      p_personas:parseInt($("so-personas").value,10)||null,p_urgencia:$("so-urgencia").value,
+      p_pago:$("so-puesto").value==="voluntariado"?null:(($("so-pago").value||"").trim()||null),p_device:getDeviceId()
+    });
+    if(res&&res.ok){
+      try{localStorage.setItem(MI_SOL_KEY,res.id);}catch(e){}
+      cerrarSheets();
+      ["so-inst","so-titulo","so-desc","so-personas","so-pago","so-estado","so-ciudad","so-nombre","so-tel"].forEach(i=>{if($(i))$(i).value="";});
+      $("so-consent").checked=false;
+      $("clave-title").textContent="✅ ¡Publicado!";
+      $("clave-hint").innerHTML="Guarda tu <b>clave de gestión</b>: con ella ves las postulaciones y marcas la publicación como cubierta. <b>Solo se muestra esta vez.</b>";
+      $("clave-num").textContent=res.clave||"——————";
+      setTimeout(()=>abrir("sheet-clave"),200);
+      refrescarSols();cargarStats();
+    }
+  }catch(err){toast(motivo(err),"err");}
+  finally{btn.disabled=false;btn.textContent="Publicar";}
+});
+
+/* ---------- postularse ---------- */
+let postCtx=null;
+$("vlist").addEventListener("click",e=>{
+  const fl=e.target.closest("[data-flagsol]");
+  if(fl){abusoCtx={tipo:"emp_solicitud",ref:fl.getAttribute("data-flagsol")};abrirAbuso("esta publicación");return;}
+  const b=e.target.closest("[data-postular]");if(!b)return;
+  postCtx={id:b.getAttribute("data-postular")};
+  $("po-title").textContent=b.getAttribute("data-titulo")||"Postularme";
+  $("po-result").innerHTML="";["po-nombre","po-tel","po-msg"].forEach(i=>$(i).value="");
+  abrir("sheet-postular");
+});
+$("po-send").addEventListener("click",async ()=>{
+  if(!postCtx)return;
+  const nom=($("po-nombre").value||"").trim();
+  if(nom.length<5||!nom.includes(" ")){toast("Escribe tu nombre y apellido","err");return;}
+  if(soloDig($("po-tel").value).length<7){toast("Escribe tu teléfono","err");return;}
+  const btn=$("po-send");btn.disabled=true;btn.textContent="Enviando…";
+  try{
+    const res=await callRPC("emp_contactar_solicitud",{p_id:postCtx.id,p_nombre:nom,p_telefono:($("po-tel").value||"").trim(),p_mensaje:($("po-msg").value||"").trim()||null,p_device:getDeviceId()});
+    if(res&&res.ok){
+      $("po-result").innerHTML=`<div class="resbox">✅ <b>¡Listo! Quedaste postulado.</b> Contacto directo:<br><a href="${esc(waLink(res.telefono,"Hola, soy "+nom+". Me postulé por empleoenvenezuela.com y quiero ayudar / aplicar."))}" target="_blank" rel="noopener noreferrer" style="font-size:1.1rem;font-weight:800">${esc(res.telefono)} — abrir WhatsApp</a><br><span style="font-size:.8rem;color:var(--muted)">Guárdalo ahora: por privacidad no volverá a mostrarse.</span></div>`;
+      refrescarSols();cargarStats();
+    }
+  }catch(err){toast(motivo(err),"err");}
+  finally{btn.disabled=false;btn.textContent="Postularme — dame el contacto";}
+});
+
+/* ---------- gestionar solicitud ---------- */
+function poblarMiSol(){
+  const sel=$("ms-sol");const miId=(function(){try{return localStorage.getItem(MI_SOL_KEY);}catch(e){return null;}})();
+  sel.innerHTML='<option value="">Elige tu publicación…</option>'+SOLS.map(s=>`<option value="${esc(s.id)}"${s.id===miId?" selected":""}>${esc(s.titulo)} (${esc(s.estado_solicitud)})</option>`).join("");
+  $("ms-list").innerHTML="";
+}
+$("ms-ver").addEventListener("click",async ()=>{
+  const id=$("ms-sol").value,clave=($("ms-clave").value||"").trim();
+  if(!id||clave.length<6){toast("Elige tu publicación y escribe tu clave","err");return;}
+  const btn=$("ms-ver");btn.disabled=true;btn.textContent="Cargando…";
+  try{
+    const ps=await callRPC("emp_mis_postulaciones",{p_id:id,p_clave:clave});
+    try{localStorage.setItem(MI_SOL_KEY,id);}catch(e){}
+    $("ms-list").innerHTML=(Array.isArray(ps)&&ps.length)
+      ?ps.map(c=>`<div class="resbox" style="background:var(--surface-2);border-color:var(--line-2)"><b>${esc(c.nombre)}</b> · <a href="${esc(waLink(c.telefono,"Hola "+c.nombre+", vi tu postulación en empleoenvenezuela.com."))}" target="_blank" rel="noopener noreferrer">${esc(c.telefono)} (WhatsApp)</a>${c.mensaje?("<br>“"+esc(c.mensaje)+"”"):""}<br><span style="font-size:.78rem;color:var(--muted)">${esc(hace(c.creado))}</span></div>`).join("")
+      :'<div class="resbox" style="background:var(--surface-2);border-color:var(--line-2)">Aún no hay postulaciones. Comparte el link de la app para que llegue a más gente.</div>';
+  }catch(err){toast(motivo(err),"err");}
+  finally{btn.disabled=false;btn.textContent="📋 Ver postulaciones";}
+});
+async function gestionarSol(nuevoEstado,msgOk){
+  const id=$("ms-sol").value,clave=($("ms-clave").value||"").trim();
+  if(!id||clave.length<6){toast("Elige tu publicación y escribe tu clave","err");return;}
+  try{await callRPC("emp_gestionar_solicitud",{p_id:id,p_clave:clave,p_nuevo_estado:nuevoEstado});toast(msgOk,"ok");refrescarSols();cargarStats();}
+  catch(err){toast(motivo(err),"err");}
+}
+$("ms-cubierta").addEventListener("click",()=>gestionarSol("cubierta","✅ Marcada como cubierta. ¡Éxito!"));
+$("ms-reabrir").addEventListener("click",()=>gestionarSol("abierta","Publicación reabierta"));
+
+/* ---------- reportar ---------- */
+let abusoCtx=null,abusoMotivo=null;
+function abrirAbuso(nombre){
+  abusoMotivo=null;
+  $("abuso-sub").textContent=(nombre?('"'+nombre+'" · '):"")+"Tu reporte ayuda a moderar la red.";
+  $("abuso-op").querySelectorAll(".chip").forEach(o=>o.classList.remove("on"));$("abuso-nota").value="";
+  abrir("sheet-abuso");
+}
+$("abuso-op").addEventListener("click",e=>{const o=e.target.closest(".chip");if(!o)return;$("abuso-op").querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));o.classList.add("on");abusoMotivo=o.getAttribute("data-m");});
+$("abuso-send").addEventListener("click",async ()=>{
+  if(!abusoCtx)return;
+  const motivoTxt=[abusoMotivo,($("abuso-nota").value||"").trim()].filter(Boolean).join(" — ")||null;
+  const btn=$("abuso-send");btn.disabled=true;btn.textContent="Enviando…";
+  try{await callRPC("reportar_abuso",{p_tipo:abusoCtx.tipo,p_referencia:abusoCtx.ref,p_motivo:motivoTxt,p_device:getDeviceId()});toast("Gracias, lo revisaremos","ok");cerrarSheets();}
+  catch(err){toast("No se pudo enviar el reporte","err");}
+  finally{btn.disabled=false;btn.textContent="Enviar reporte";}
+});
+$("list").addEventListener("click",e=>{
+  const fl=e.target.closest("[data-flag]");
+  if(fl){abusoCtx={tipo:"emp_perfil",ref:fl.getAttribute("data-flag")+" · "+fl.getAttribute("data-name")};abrirAbuso(fl.getAttribute("data-name"));}
+});
+
+/* ---------- refrescar ---------- */
+async function refrescarPerfiles(){
+  try{await cargarPerfiles();poblarEstadosSel();renderPerfiles();}
+  catch(e){try{const c=JSON.parse(localStorage.getItem(CACHE_KEY)||"null");if(c&&c.p){PERFILES=c.p;poblarEstadosSel();renderPerfiles();}}catch(_){}}
+}
+async function refrescarSols(){
+  try{await cargarSols();poblarEstadosSel();renderSols();}
+  catch(e){$("vlist").innerHTML="";$("vempty").classList.remove("hide");$("vempty").innerHTML="<div>No se pudo cargar. Revisa tu conexión.</div>";}
+}
+
+/* ---------- filtros ---------- */
+$("q").addEventListener("input",renderPerfiles);
+$("f-sector").addEventListener("change",renderPerfiles);
+$("f-estado").addEventListener("change",renderPerfiles);
+$("vq").addEventListener("input",renderSols);
+$("vf-sector").addEventListener("change",renderSols);
+$("vf-estado").addEventListener("change",renderSols);
+document.querySelectorAll('.chip[data-fil]').forEach(c=>c.addEventListener("click",()=>{document.querySelectorAll('.chip[data-fil]').forEach(x=>x.classList.remove("on"));c.classList.add("on");filtro=c.getAttribute("data-fil");renderPerfiles();}));
+document.querySelectorAll('.chip[data-vfil]').forEach(c=>c.addEventListener("click",()=>{document.querySelectorAll('.chip[data-vfil]').forEach(x=>x.classList.remove("on"));c.classList.add("on");vfiltro=c.getAttribute("data-vfil");renderSols();}));
+
+/* ---------- compartir ---------- */
+(function(){
+  const b=$("share-fab");if(!b)return;
+  const url="https://empleoenvenezuela.com";
+  const txt="Empleo en Venezuela — trabajo y voluntariado después del sismo. Publica tu perfil gratis o consigue manos para ayudar:";
+  b.addEventListener("click",async ()=>{
+    try{if(navigator.share){await navigator.share({title:"Empleo en Venezuela",text:txt,url:url});return;}}
+    catch(e){if(e&&e.name==="AbortError")return;}
+    window.open("https://wa.me/?text="+encodeURIComponent(txt+" "+url),"_blank","noopener");
+  });
+})();
+
+/* ---------- tamaño de letra ---------- */
+const FS=[16,18,20,22];let fsi=1;
+function aplicarFS(){document.documentElement.style.fontSize=FS[fsi]+"px";try{localStorage.setItem(FS_KEY,fsi);}catch(e){}}
+$("a-minus").addEventListener("click",()=>{fsi=Math.max(0,fsi-1);aplicarFS();});
+$("a-plus").addEventListener("click",()=>{fsi=Math.min(FS.length-1,fsi+1);aplicarFS();});
+
+/* ---------- arranque ---------- */
+(function init(){
+  try{const s=localStorage.getItem(FS_KEY);if(s!=null){fsi=Math.min(FS.length-1,Math.max(0,parseInt(s,10)||1));}}catch(e){}
+  aplicarFS();
+  poblarSectores();
+  try{const c=JSON.parse(localStorage.getItem(CACHE_KEY)||"null");if(c&&c.p&&c.p.length){PERFILES=c.p;poblarEstadosSel();renderPerfiles();}}catch(e){}
+  refrescarPerfiles();refrescarSols();
+  cargarStats();setInterval(cargarStats,45000);
+  try{if(!localStorage.getItem(SEEN_KEY))setTimeout(()=>abrir("sheet-guia"),500);}catch(e){}
+})();
+if("serviceWorker" in navigator){
+  let _refreshing=false;
+  navigator.serviceWorker.addEventListener("controllerchange",()=>{if(_refreshing)return;if(navigator.serviceWorker.controller){_refreshing=true;location.reload();}});
+  window.addEventListener("load",()=>{navigator.serviceWorker.register("./sw.js").then(r=>{try{r.update();}catch(e){}}).catch(()=>{});});
+}
+</script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
