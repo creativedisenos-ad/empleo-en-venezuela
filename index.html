@@ -277,9 +277,9 @@
 #side-dash{display:none}
 @media(min-width:1200px){
   .wrap{max-width:840px;margin-left:calc(50vw - 582px);margin-right:0}
-  #side-dash{display:block;position:fixed;top:110px;left:calc(50vw + 282px);width:300px;z-index:5;
+  #side-dash{display:block;position:fixed;top:var(--sd-top,110px);left:calc(50vw + 282px);width:300px;z-index:5;
     background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-card);
-    padding:1.05rem 1rem 1.1rem;box-shadow:var(--shadow-card)}
+    padding:1.05rem 1rem 1.1rem;box-shadow:var(--shadow-card);max-height:calc(100vh - var(--sd-top,110px) - 16px);overflow-y:auto}
   #side-dash .sd-head{display:flex;align-items:center;gap:.45rem;font-size:.78rem;font-weight:700;letter-spacing:.04em;color:var(--ink-2);margin-bottom:.7rem}
   #side-dash .sd-dot{width:.55rem;height:.55rem;border-radius:50%;background:#0f8a45;animation:sdpulse 1.6s infinite}
   @keyframes sdpulse{0%,100%{opacity:1}50%{opacity:.35}}
@@ -1654,6 +1654,23 @@ if("serviceWorker" in navigator){
     call("emp_estadisticas").then(function(e){if(!e)return;pon("sd-perf",e.perfiles);});
   }
   carga();setInterval(carga,60000);
+})();
+</script>
+<script>
+(function(){
+  function sdTop(){
+    var h=document.querySelector("header.app");
+    if(!h)return;
+    document.documentElement.style.setProperty("--sd-top",Math.round(h.getBoundingClientRect().height+14)+"px");
+  }
+  function init(){
+    sdTop();
+    var hd=document.querySelector("header.app");
+    if(hd&&window.ResizeObserver){new ResizeObserver(sdTop).observe(hd);}
+    window.addEventListener("resize",sdTop);
+    window.addEventListener("load",sdTop);
+  }
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
 })();
 </script>
 </body>

@@ -1,6 +1,6 @@
 /* Service worker — la app abre sin señal, pero SIEMPRE intenta traer
    la versión más reciente cuando hay internet (network-first para el HTML). */
-const CACHE = "emp-ve-v18";
+const CACHE = "emp-ve-v19";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", (e) => {
@@ -24,7 +24,8 @@ self.addEventListener("fetch", (e) => {
 
   const isDoc = e.request.mode === "navigate" ||
                 e.request.destination === "document" ||
-                url.pathname === "/" || url.pathname.endsWith("/index.html");
+                url.pathname === "/" ||
+                url.pathname.endsWith("/index.html");
 
   if (isDoc) {
     e.respondWith(
