@@ -51,7 +51,7 @@
     display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(26,86,219,.22),0 6px 16px rgba(26,86,219,.38)}
   .mark svg{width:1.3rem;height:1.3rem}
   .brand-tt{min-width:0}
-  .brand-tt h1{margin:0;font-size:1.02rem;font-weight:800;line-height:1.1}
+  .brand-tt h1{margin:0;font-size:1.02rem;font-weight:800;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .brand-tt p{margin:.05rem 0 0;font-size:.72rem;color:var(--muted);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .bar-actions{margin-left:auto;display:flex;align-items:center;gap:.4rem;flex:none}
   .az{display:flex;align-items:center;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-pill);overflow:hidden;box-shadow:var(--shadow-s)}
@@ -63,6 +63,12 @@
     color:var(--ink-2);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-s);
     transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
   .icon-btn:active{transform:scale(.94)}.icon-btn svg{width:1.2rem;height:1.2rem}
+  .login-pill{flex:none;display:flex;align-items:center;gap:.32rem;height:2.5rem;padding:0 .8rem;border-radius:var(--r-pill);
+    border:none;background:var(--grad-brand);color:#fff;cursor:pointer;font-weight:800;font-size:.82rem;white-space:nowrap;
+    box-shadow:var(--shadow-btn);transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+  .login-pill:active{transform:scale(.95)}
+  .login-pill svg{width:1.1rem;height:1.1rem;flex:none}
+  @media (max-width:360px){.login-pill{padding:0 .6rem;font-size:.74rem}.login-pill svg{width:1rem;height:1rem}}
 
   .segwrap{max-width:600px;margin:0 auto;padding:0 1rem .6rem}
   .segmented{display:flex;gap:.2rem;background:#e2e8f2;border-radius:.85rem;padding:.25rem;position:relative}
@@ -254,8 +260,9 @@
       <button id="btn-guia" class="icon-btn" aria-label="Cómo funciona">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5"/><circle cx="12" cy="7.6" r="0.4" fill="currentColor"/></svg>
       </button>
-      <button id="btn-login" class="icon-btn" aria-label="Iniciar sesión" title="Iniciar sesión">
+      <button id="btn-login" class="login-pill" aria-label="Iniciar sesión" title="Iniciar sesión">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>
+        <span>Iniciar sesión</span>
       </button>
     </div>
   </div>
@@ -722,6 +729,8 @@
     <div style="display:flex;gap:.8rem;margin-bottom:1rem"><span style="flex:none;width:2.1rem;height:2.1rem;border-radius:.7rem;background:var(--brand-soft);color:var(--brand-deep);font-weight:800;display:flex;align-items:center;justify-content:center">1</span><div><b style="font-size:1rem">Publica tu perfil</b><div style="font-size:.92rem;color:var(--ink-2);margin-top:.15rem">Si perdiste tu trabajo o quieres ser voluntario: tu experiencia, habilidades y disponibilidad, con tu WhatsApp para que te contacten directo.</div></div></div>
     <div style="display:flex;gap:.8rem;margin-bottom:1rem"><span style="flex:none;width:2.1rem;height:2.1rem;border-radius:.7rem;background:var(--brand-soft);color:var(--brand-deep);font-weight:800;display:flex;align-items:center;justify-content:center">2</span><div><b style="font-size:1rem">Publica lo que necesitas</b><div style="font-size:.92rem;color:var(--ink-2);margin-top:.15rem">Empresas, hospitales, acopios, refugios, iglesias y vecinos piden <b>voluntarios o personal</b>. El teléfono va oculto y recibes las postulaciones con tu clave.</div></div></div>
     <div style="display:flex;gap:.8rem;margin-bottom:1rem"><span style="flex:none;width:2.1rem;height:2.1rem;border-radius:.7rem;background:var(--brand-soft);color:var(--brand-deep);font-weight:800;display:flex;align-items:center;justify-content:center">3</span><div><b style="font-size:1rem">Conéctense directo</b><div style="font-size:.92rem;color:var(--ink-2);margin-top:.15rem">Sin intermediarios ni comisiones. Acuerdan entre ustedes por WhatsApp o teléfono.</div></div></div>
+    <div style="display:flex;gap:.8rem;margin-bottom:1rem"><span style="flex:none;width:2.1rem;height:2.1rem;border-radius:.7rem;background:var(--brand-soft);color:var(--brand-deep);font-weight:800;display:flex;align-items:center;justify-content:center">4</span><div><b style="font-size:1rem">Inicia sesión cuando quieras</b><div style="font-size:.92rem;color:var(--ink-2);margin-top:.15rem">Con el botón <b>Iniciar sesión</b> (arriba) entras a <b>Mi panel</b>: escribe tu WhatsApp (o los últimos 4 dígitos, si publicaste una vacante) y tu <b>clave de gestión</b>. Desde ahí editas, pausas o retiras tu publicación cuando quieras.</div></div></div>
+    <div style="display:flex;gap:.7rem;align-items:flex-start;background:var(--warn-bg);border-radius:var(--r-fld);padding:.8rem .9rem;margin-bottom:1rem"><span style="flex:none;font-size:1.3rem;line-height:1">🔑</span><div><b style="font-size:.94rem;color:var(--warn)">Guarda bien tu clave</b><div style="font-size:.88rem;color:var(--ink-2);margin-top:.15rem">Se muestra <b>una sola vez</b> al publicar y <b>no se puede recuperar</b> si la pierdes. Es tu único código para entrar a Mi panel — tómale una captura o anótala en un lugar seguro.</div></div></div>
     <p style="font-size:.84rem;color:var(--muted);border-top:1px solid var(--line-2);padding-top:.9rem"><b>Regla de oro:</b> aquí <b>nadie paga por conseguir trabajo</b> ni por conseguir voluntarios. Si alguien te pide dinero, repórtalo con el botón de la bandera. La plataforma es comunitaria y no se responsabiliza por los acuerdos entre las partes — verifica siempre con quién hablas.</p>
     <button id="guia-ok" class="send">Entendido</button>
   </div>
