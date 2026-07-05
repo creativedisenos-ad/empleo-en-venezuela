@@ -827,9 +827,38 @@ let PERFILES=[], SOLS=[], filtro="todos", vfiltro="todas", view="personas";
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
 function iniciales(n){const p=String(n||"").trim().split(/\s+/);return (((p[0]||"")[0]||"")+((p[1]||"")[0]||"")).toUpperCase();}
 /* ---------- fotos de perfil ---------- */
-async function subirFoto(file){
+function esHeic(file){
+  const n=(file.name||"").toLowerCase(),t=(file.type||"").toLowerCase();
+  return /\.hei[cf]$/.test(n)||/heic|heif/.test(t);
+}
+function convertirHeic(file){
+  return new Promise((resolve,reject)=>{
+    const img=new Image();
+    const url=URL.createObjectURL(file);
+    img.onload=()=>{
+      try{
+        const cv=document.createElement("canvas");
+        cv.width=img.naturalWidth;cv.height=img.naturalHeight;
+        cv.getContext("2d").drawImage(img,0,0);
+        cv.toBlob(b=>{ URL.revokeObjectURL(url); if(b) resolve(new File([b],(file.name||"foto").replace(/\.hei[cf]$/i,".jpg"),{type:"image/jpeg"})); else reject(new Error("foto_formato_no_compatible")); },"image/jpeg",0.9);
+      }catch(e){URL.revokeObjectURL(url);reject(new Error("foto_formato_no_compatible"));}
+    };
+    img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error("foto_formato_no_compatible"));};
+    img.src=url;
+  });
+}
+async function prepararFoto(file){
   if(!file) return null;
   if(file.size>10*1024*1024){throw new Error("foto_muy_pesada");}
+  if(!esHeic(file)) return file;
+  // La mayoría de navegadores (todos menos Safari) no pueden mostrar fotos HEIC — las convertimos a JPG.
+  try{ return await convertirHeic(file); }
+  catch(e){ throw new Error("foto_formato_no_compatible"); }
+}
+async function subirFoto(fileOriginal){
+  if(!fileOriginal) return null;
+  const file=await prepararFoto(fileOriginal);
+  if(!file) return null;
   const ext=((file.name||"").split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg";
   const nombre=(window.crypto&&crypto.randomUUID?crypto.randomUUID():(Date.now()+"-"+Math.random().toString(36).slice(2)))+"."+ext;
   const res=await fetch(SUPABASE_URL+"/storage/v1/object/emp-fotos/perfiles/"+nombre,{
@@ -843,14 +872,21 @@ async function subirFoto(file){
 function wireFotoInput(inputId,avatarId,nameId,placeholderHtml){
   const inp=$(inputId);
   if(!inp) return;
-  inp.addEventListener("change",()=>{
+  inp.addEventListener("change",async ()=>{
     const f=inp.files&&inp.files[0];
     if(!f) return;
     if(f.size>10*1024*1024){toast("La foto no puede pesar más de 10MB","err");inp.value="";return;}
     if(nameId&&$(nameId)) $(nameId).textContent="📷 "+f.name;
+    let previewFile=f;
+    if(esHeic(f)){
+      if(nameId&&$(nameId)) $(nameId).textContent="📷 Convirtiendo foto…";
+      try{ previewFile=await convertirHeic(f); }
+      catch(e){ toast("Esa foto (HEIC) no se pudo procesar. Prueba con otra o cambia tu cámara a modo 'Más compatible' (Ajustes > Cámara > Formatos).","err"); inp.value=""; if(nameId&&$(nameId)) $(nameId).textContent="📷 Elegir foto (se muestra en tu tarjeta)"; return; }
+      if(nameId&&$(nameId)) $(nameId).textContent="📷 "+f.name+" (convertida)";
+    }
     const reader=new FileReader();
     reader.onload=()=>{ if($(avatarId)) $(avatarId).innerHTML=`<img src="${reader.result}" alt="">`; };
-    reader.readAsDataURL(f);
+    reader.readAsDataURL(previewFile);
   });
 }
 /* ---------- tasa BCV ---------- */
@@ -911,6 +947,8 @@ function motivo(err){
   if(/cedula_requerida/.test(m))return "Escribe tu número de cédula (no se publica, es solo para verificación).";
   if(/email_invalido/.test(m))return "Ese email no parece válido. Revísalo o deja el campo vacío.";
   if(/foto_muy_pesada/.test(m))return "La foto no puede pesar más de 10MB.";
+  if(/foto_formato_no_compatible/.test(m))return "Esa foto (HEIC) no se pudo procesar. Prueba con otra o cambia tu cámara a modo 'Más compatible' (Ajustes > Cámara > Formatos).";
+  if(/upload_fallo/.test(m))return "No se pudo subir la foto. Intenta de nuevo o con otra foto.";
   if(/clave_invalida/.test(m))return "Esa clave no coincide. Revisa los 6 dígitos que guardaste.";
   if(/ya_cubierta/.test(m))return "Esa publicación ya fue cubierta o cerrada.";
   if(/no_existe/.test(m))return "No encontramos ese registro. Refresca la página.";
@@ -1125,7 +1163,7 @@ $("pf-send").addEventListener("click",async ()=>{
     const fotoFile=$("pf-foto").files&&$("pf-foto").files[0];
     if(fotoFile){
       try{ fotoUrl=await subirFoto(fotoFile); }
-      catch(e){ toast("No se pudo subir la foto — se publicará el perfil sin ella","err"); }
+      catch(e){ toast(motivo(e)+" Se publicará el perfil sin foto.","err"); }
     }
     const email=($("pf-email").value||"").trim();
     const res=await callRPC("emp_registrar_perfil",{
@@ -1272,7 +1310,7 @@ async function miPanelPerfilAccion(params,msgOk){
   const fotoFile=$("pp-ed-foto").files&&$("pp-ed-foto").files[0];
   if(fotoFile){
     try{ fotoParams.p_foto_url=await subirFoto(fotoFile); }
-    catch(e){ toast("No se pudo subir la foto — se guardó el resto de los cambios","err"); }
+    catch(e){ toast(motivo(e)+" Se guardó el resto de los cambios.","err"); }
   }
   try{
     await callRPC("emp_actualizar_perfil",Object.assign({p_id:s.id,p_clave:s.clave},datosPanelPerfil(),fotoParams,params));
