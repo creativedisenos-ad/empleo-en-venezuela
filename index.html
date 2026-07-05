@@ -407,13 +407,71 @@
     <div class="hero" id="pp-activo-box">
       <h2>Disponibilidad</h2>
       <p>Actualiza tu estado para que sepan si pueden contactarte ahora.</p>
-      <label for="pp-disp">Actualizar disponibilidad (opcional)</label>
-      <input id="pp-disp" class="fld" maxlength="140" placeholder="Ej: Disponible desde el lunes · Solo mañanas">
+      <label for="pp-disp-sel">Actualizar disponibilidad (opcional)</label>
+      <select id="pp-disp-sel" class="fld">
+        <option value="">Sin especificar</option>
+        <option value="Inmediata, tiempo completo">Inmediata, tiempo completo</option>
+        <option value="Inmediata, medio tiempo">Inmediata, medio tiempo</option>
+        <option value="Por horas / freelance">Por horas / freelance</option>
+        <option value="Solo fines de semana">Solo fines de semana</option>
+        <option value="Solo en las mañanas">Solo en las mañanas</option>
+        <option value="Solo en las tardes">Solo en las tardes</option>
+        <option value="A convenir">A convenir</option>
+        <option value="otro">Otra (especificar)</option>
+      </select>
+      <input id="pp-disp" class="fld hide" maxlength="140" placeholder="Escribe tu disponibilidad">
       <div style="display:flex;gap:.5rem">
         <button id="pp-on" class="send" style="flex:1">🟢 Estoy disponible</button>
         <button id="pp-off" class="send dark" style="flex:1">No disponible</button>
       </div>
-      <button id="pp-retirar" class="send" style="margin-top:.6rem;background:var(--surface);color:var(--bad);border:1.5px solid #f3cdc9;box-shadow:var(--shadow-s)">🎉 Ya conseguí — retirar mi perfil</button>
+    </div>
+
+    <div class="hero" id="pp-editar-box">
+      <h2>Editar mi perfil</h2>
+      <p>Actualiza cualquier dato de tu perfil público.</p>
+      <label for="pp-ed-nombre">Nombre y apellido *</label>
+      <input id="pp-ed-nombre" class="fld" maxlength="120">
+      <label for="pp-ed-edad">Edad *</label>
+      <input id="pp-ed-edad" class="fld" inputmode="numeric" maxlength="3">
+      <label for="pp-ed-titulo">¿Qué sabes hacer? (tu titular) *</label>
+      <input id="pp-ed-titulo" class="fld" maxlength="140">
+      <label for="pp-ed-tipo">¿Qué buscas? *</label>
+      <select id="pp-ed-tipo" class="fld">
+        <option value="ambos">Empleo y también puedo ser voluntario/a</option>
+        <option value="busco_empleo">Busco empleo</option>
+        <option value="voluntario">Quiero ser voluntario/a</option>
+      </select>
+      <label class="check" style="margin-top:.2rem"><input type="checkbox" id="pp-ed-perdio"><span><b>Mi lugar de trabajo ya no existe</b> por el sismo (tu perfil se marca para darle prioridad).</span></label>
+      <label for="pp-ed-sector">Sector / área *</label>
+      <select id="pp-ed-sector" class="fld"></select>
+      <label for="pp-ed-exp">Tu experiencia</label>
+      <textarea id="pp-ed-exp" class="fld" rows="3" maxlength="600"></textarea>
+      <label for="pp-ed-hab">Habilidades (separadas por ·)</label>
+      <input id="pp-ed-hab" class="fld" maxlength="300">
+      <label for="pp-ed-aspiracion">¿Cuánto esperas ganar? (opcional)</label>
+      <input id="pp-ed-aspiracion" class="fld" maxlength="80" placeholder="Ej: $300/mes · A convenir">
+      <div class="selrow" style="margin:0 0 .7rem">
+        <select id="pp-ed-modalidad" class="fld" style="margin:0">
+          <option value="presencial">Presencial</option>
+          <option value="remoto">Remoto</option>
+          <option value="ambas">Presencial o remoto</option>
+        </select>
+      </div>
+      <label for="pp-ed-estado">Estado *</label>
+      <input id="pp-ed-estado" class="fld" list="estados-dl" maxlength="40">
+      <label for="pp-ed-ciudad">Ciudad *</label>
+      <input id="pp-ed-ciudad" class="fld" maxlength="80">
+      <label for="pp-ed-wa">WhatsApp (será público para que te contacten) *</label>
+      <input id="pp-ed-wa" class="fld" inputmode="tel" maxlength="40">
+      <label for="pp-ed-ig">Instagram (opcional)</label>
+      <input id="pp-ed-ig" class="fld" maxlength="120">
+      <button id="pp-ed-guardar" class="send">Guardar cambios</button>
+    </div>
+
+    <div class="hero">
+      <h2>¿Ya conseguiste?</h2>
+      <p>Retira tu perfil de la lista pública. Podrás reactivarlo cuando quieras.</p>
+      <button id="pp-retirar" class="send" style="background:var(--surface);color:var(--bad);border:1.5px solid #f3cdc9;box-shadow:var(--shadow-s)">🎉 Ya conseguí — retirar mi perfil</button>
     </div>
 
     <button id="pp-reactivar" class="cta hide">Volver a activar mi perfil</button>
@@ -460,6 +518,11 @@
     <p class="hint">Como una mini hoja de vida pública. Mientras más claro, más fácil que te consigan.</p>
     <label for="pf-nombre">Nombre y apellido *</label>
     <input id="pf-nombre" class="fld" maxlength="120" placeholder="Ej: María González" autocomplete="name">
+    <label for="pf-edad">Edad *</label>
+    <input id="pf-edad" class="fld" inputmode="numeric" maxlength="3" placeholder="Ej: 34">
+    <label for="pf-cedula">Cédula *</label>
+    <input id="pf-cedula" class="fld" maxlength="20" placeholder="Ej: V-12345678" autocomplete="off">
+    <p class="help">🔒 Tu cédula es solo para verificación interna — nunca se publica ni se muestra a nadie.</p>
     <label for="pf-titulo">¿Qué sabes hacer? (tu titular) *</label>
     <input id="pf-titulo" class="fld" maxlength="140" placeholder="Ej: Electricista con 10 años de experiencia">
     <label for="pf-tipo">¿Qué buscas? *</label>
@@ -475,8 +538,21 @@
     <textarea id="pf-exp" class="fld" rows="3" maxlength="600" placeholder="Ej: 10 años en instalaciones eléctricas residenciales. Trabajé en la constructora X hasta el sismo."></textarea>
     <label for="pf-hab">Habilidades (separadas por ·)</label>
     <input id="pf-hab" class="fld" maxlength="300" placeholder="Ej: Electricidad · Plomería básica · Manejo de camión">
-    <label for="pf-disp">Disponibilidad</label>
-    <input id="pf-disp" class="fld" maxlength="140" placeholder="Ej: Inmediata, tiempo completo · Fines de semana">
+    <label for="pf-disp-sel">Disponibilidad</label>
+    <select id="pf-disp-sel" class="fld">
+      <option value="" selected>Sin especificar</option>
+      <option value="Inmediata, tiempo completo">Inmediata, tiempo completo</option>
+      <option value="Inmediata, medio tiempo">Inmediata, medio tiempo</option>
+      <option value="Por horas / freelance">Por horas / freelance</option>
+      <option value="Solo fines de semana">Solo fines de semana</option>
+      <option value="Solo en las mañanas">Solo en las mañanas</option>
+      <option value="Solo en las tardes">Solo en las tardes</option>
+      <option value="A convenir">A convenir</option>
+      <option value="otro">Otra (especificar)</option>
+    </select>
+    <input id="pf-disp" class="fld hide" maxlength="140" placeholder="Escribe tu disponibilidad">
+    <label for="pf-aspiracion">¿Cuánto esperas ganar? (opcional)</label>
+    <input id="pf-aspiracion" class="fld" maxlength="80" placeholder="Ej: $300/mes · A convenir">
     <div class="selrow" style="margin:0 0 .7rem">
       <select id="pf-modalidad" class="fld" style="margin:0">
         <option value="presencial" selected>Presencial</option>
@@ -510,7 +586,8 @@
       <p>Anótala o tómale captura ahora.</p>
     </div>
     <button id="clave-copy" class="send dark">Copiar clave</button>
-    <button class="send" data-close style="margin-top:.6rem">Ya la guardé</button>
+    <button id="clave-panel" class="send" style="margin-top:.6rem">Ir a mi panel ahora</button>
+    <button class="send" data-close style="margin-top:.6rem;background:none;color:var(--muted);box-shadow:none">Ya la guardé</button>
   </div>
 </div>
 
@@ -721,6 +798,9 @@ function motivo(err){
   if(/whatsapp_requerido/.test(m))return "Escribe tu WhatsApp para que puedan contactarte.";
   if(/telefono_requerido/.test(m))return "Escribe un teléfono válido.";
   if(/descripcion_corta/.test(m))return "Describe un poco más (mínimo 10 caracteres).";
+  if(/edad_requerida/.test(m))return "Escribe tu edad — es obligatoria para publicar tu perfil.";
+  if(/edad_invalida/.test(m))return "La edad debe estar entre 14 y 100 años.";
+  if(/cedula_requerida/.test(m))return "Escribe tu número de cédula (no se publica, es solo para verificación).";
   if(/clave_invalida/.test(m))return "Esa clave no coincide. Revisa los 6 dígitos que guardaste.";
   if(/ya_cubierta/.test(m))return "Esa publicación ya fue cubierta o cerrada.";
   if(/no_existe/.test(m))return "No encontramos ese registro. Refresca la página.";
@@ -764,6 +844,7 @@ function poblarSectores(){
   if($("vf-sector"))$("vf-sector").innerHTML=ops;
   if($("pf-sector"))$("pf-sector").innerHTML=opsSel;
   if($("so-sector"))$("so-sector").innerHTML=opsSel;
+  if($("pp-ed-sector"))$("pp-ed-sector").innerHTML=opsSel;
   const dl=$("estados-dl");if(dl&&!dl.children.length)dl.innerHTML=ESTADOS_VE.map(e=>`<option value="${esc(e)}">`).join("");
 }
 function poblarEstadosSel(){
@@ -799,7 +880,8 @@ function perfilCard(p){
     <p class="sub">${tags.join("")}</p>
     ${p.experiencia?`<div class="bio-label">Sobre su experiencia</div><div class="bio">${esc(p.experiencia)}</div>`:""}
     ${p.habilidades?`<div class="meta">💠 ${esc(p.habilidades)}</div>`:""}
-    <div class="meta">${p.disponibilidad?("🕒 "+esc(p.disponibilidad)+" · "):""}${esc(MODAL[p.modalidad]||"")} · 📍 ${esc(p.ciudad)}, ${esc(p.estado)} · ${esc(hace(p.creado))}</div>
+    ${p.aspiracion_salarial?`<div class="meta">💰 Aspira a: ${esc(p.aspiracion_salarial)}</div>`:""}
+    <div class="meta">${p.edad?("🎂 "+esc(p.edad)+" años · "):""}${p.disponibilidad?("🕒 "+esc(p.disponibilidad)+" · "):""}${esc(MODAL[p.modalidad]||"")} · 📍 ${esc(p.ciudad)}, ${esc(p.estado)} · ${esc(hace(p.creado))}</div>
     <div class="row-actions">${wa}${ig}</div>
     <button class="flag" data-flag="${esc(p.id)}" data-name="${esc(p.nombre)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4h13l-1.5 4 1.5 4H4"/></svg>Reportar</button>
   </li>`;
@@ -881,10 +963,38 @@ $("guia-ok").addEventListener("click",()=>{try{localStorage.setItem(SEEN_KEY,"1"
 $("so-quien").addEventListener("change",()=>{$("so-inst-box").classList.toggle("hide",$("so-quien").value==="persona");});
 $("so-puesto").addEventListener("change",()=>{$("so-pago-box").classList.toggle("hide",$("so-puesto").value==="voluntariado");});
 
+/* ---------- disponibilidad: select con opciones + "otra" ---------- */
+function dispValor(selId,inputId){
+  const sel=$(selId).value;
+  return sel==="otro" ? ($(inputId).value||"").trim() : sel;
+}
+function setDispSel(selId,inputId,value){
+  const sel=$(selId),inp=$(inputId);
+  const esPreset=[...sel.options].some(o=>o.value===value && o.value!=="" && o.value!=="otro");
+  if(value && esPreset){sel.value=value;inp.value="";inp.classList.add("hide");}
+  else if(value){sel.value="otro";inp.value=value;inp.classList.remove("hide");}
+  else{sel.value="";inp.value="";inp.classList.add("hide");}
+}
+$("pf-disp-sel").addEventListener("change",()=>{
+  const otro=$("pf-disp-sel").value==="otro";
+  $("pf-disp").classList.toggle("hide",!otro);
+  if(otro)$("pf-disp").focus();
+});
+$("pp-disp-sel").addEventListener("change",()=>{
+  const otro=$("pp-disp-sel").value==="otro";
+  $("pp-disp").classList.toggle("hide",!otro);
+  if(otro)$("pp-disp").focus();
+});
+
 /* ---------- publicar perfil ---------- */
+let claveCtx=null;
 $("pf-send").addEventListener("click",async ()=>{
   const nombre=($("pf-nombre").value||"").trim(),titulo=($("pf-titulo").value||"").trim();
   if(nombre.replace(/[^A-Za-zÀ-ÿñÑ ]/g,"").trim().length<5||!nombre.includes(" ")){toast("Escribe tu nombre y apellido","err");$("pf-nombre").focus();return;}
+  const edad=parseInt($("pf-edad").value,10);
+  if(!edad||edad<14||edad>100){toast("Escribe tu edad (entre 14 y 100 años)","err");$("pf-edad").focus();return;}
+  const cedula=($("pf-cedula").value||"").trim();
+  if(cedula.length<6){toast("Escribe tu número de cédula","err");$("pf-cedula").focus();return;}
   if(titulo.length<5){toast("Escribe tu titular: ¿qué sabes hacer?","err");$("pf-titulo").focus();return;}
   if(soloDig($("pf-wa").value).length<7){toast("Escribe tu WhatsApp","err");$("pf-wa").focus();return;}
   const est=($("pf-estado").value||"").trim(),ciu=($("pf-ciudad").value||"").trim();
@@ -896,16 +1006,19 @@ $("pf-send").addEventListener("click",async ()=>{
       p_nombre:nombre,p_titulo:titulo,p_tipo:$("pf-tipo").value,
       p_perdio_trabajo:$("pf-perdio").checked,p_sector:$("pf-sector").value||"otro",
       p_experiencia:($("pf-exp").value||"").trim()||null,p_habilidades:($("pf-hab").value||"").trim()||null,
-      p_disponibilidad:($("pf-disp").value||"").trim()||null,p_modalidad:$("pf-modalidad").value,
+      p_disponibilidad:dispValor("pf-disp-sel","pf-disp")||null,p_modalidad:$("pf-modalidad").value,
       p_estado:est,p_ciudad:ciu,p_whatsapp:($("pf-wa").value||"").trim(),
-      p_instagram:($("pf-ig").value||"").trim()||null,p_device:getDeviceId()
+      p_instagram:($("pf-ig").value||"").trim()||null,p_device:getDeviceId(),
+      p_edad:edad,p_aspiracion_salarial:($("pf-aspiracion").value||"").trim()||null,p_cedula:cedula
     });
     if(res&&res.duplicado){toast("Ya existe un perfil con ese nombre y WhatsApp","err");return;}
     if(res&&res.ok){
       guardarSesionPerfil(res.id,res.clave);
       cerrarSheets();
-      ["pf-nombre","pf-titulo","pf-exp","pf-hab","pf-disp","pf-estado","pf-ciudad","pf-wa","pf-ig"].forEach(i=>$(i).value="");
+      ["pf-nombre","pf-edad","pf-cedula","pf-titulo","pf-exp","pf-hab","pf-disp","pf-aspiracion","pf-estado","pf-ciudad","pf-wa","pf-ig"].forEach(i=>$(i).value="");
+      $("pf-disp-sel").value="";$("pf-disp").classList.add("hide");
       $("pf-consent").checked=false;$("pf-perdio").checked=false;
+      claveCtx="perfil";
       $("clave-title").textContent="✅ ¡Tu perfil está publicado!";
       $("clave-hint").innerHTML="Guarda tu <b>clave de gestión</b>: con ella te marcas disponible o retiras tu perfil cuando consigas. <b>Solo se muestra esta vez.</b>";
       $("clave-num").textContent=res.clave||"——————";
@@ -918,6 +1031,11 @@ $("pf-send").addEventListener("click",async ()=>{
 $("clave-copy").addEventListener("click",async ()=>{
   try{await navigator.clipboard.writeText($("clave-num").textContent.trim());toast("Clave copiada","ok");}
   catch(e){toast("Cópiala manualmente","err");}
+});
+$("clave-panel").addEventListener("click",()=>{
+  cerrarSheets();
+  if(claveCtx==="perfil"){const s=leerSesionPerfil();if(s&&s.id&&s.clave)entrarPanelPerfil(s.id,s.clave,true);}
+  else if(claveCtx==="sol"){const s=leerSesionSol();if(s&&s.id&&s.clave)entrarPanelSol(s.id,s.clave,true);}
 });
 
 /* ---------- login / panel perfil ---------- */
@@ -952,16 +1070,32 @@ function pintarPanelPerfil(prof){
     $("pp-titulo").textContent="Parece que está retirado.";
     $("pp-badge").className="badge b-off";$("pp-badge-txt").textContent="Retirado";
     $("pp-activo-box").classList.add("hide");
+    $("pp-editar-box").classList.add("hide");
     $("pp-reactivar").classList.remove("hide");
     return;
   }
   $("pp-activo-box").classList.remove("hide");
+  $("pp-editar-box").classList.remove("hide");
   $("pp-reactivar").classList.add("hide");
   $("pp-nombre").textContent=prof.nombre;
   $("pp-titulo").textContent=prof.titulo;
   $("pp-badge").className="badge "+(prof.disponible?"b-on":"b-off");
   $("pp-badge-txt").textContent=prof.disponible?"Disponible":"No disponible";
-  $("pp-disp").value=prof.disponibilidad||"";
+  setDispSel("pp-disp-sel","pp-disp",prof.disponibilidad||"");
+  $("pp-ed-nombre").value=prof.nombre||"";
+  $("pp-ed-edad").value=prof.edad||"";
+  $("pp-ed-titulo").value=prof.titulo||"";
+  $("pp-ed-tipo").value=prof.tipo||"ambos";
+  $("pp-ed-perdio").checked=!!prof.perdio_trabajo;
+  $("pp-ed-sector").value=prof.sector||"otro";
+  $("pp-ed-exp").value=prof.experiencia||"";
+  $("pp-ed-hab").value=prof.habilidades||"";
+  $("pp-ed-aspiracion").value=prof.aspiracion_salarial||"";
+  $("pp-ed-modalidad").value=prof.modalidad||"presencial";
+  $("pp-ed-estado").value=prof.estado||"";
+  $("pp-ed-ciudad").value=prof.ciudad||"";
+  $("pp-ed-wa").value=prof.whatsapp||"";
+  $("pp-ed-ig").value=prof.instagram||"";
 }
 $("mp-entrar").addEventListener("click",async ()=>{
   const tel=($("mp-tel").value||"").trim(),clave=($("mp-clave").value||"").trim();
@@ -973,11 +1107,32 @@ $("mp-entrar").addEventListener("click",async ()=>{
   await entrarPanelPerfil(p.id,clave,false);
   btn.disabled=false;btn.textContent="Entrar a mi panel";
 });
+function datosPanelPerfil(){
+  return {
+    p_disponibilidad:dispValor("pp-disp-sel","pp-disp")||null,
+    p_aspiracion_salarial:($("pp-ed-aspiracion").value||"").trim()||null,
+    p_edad:$("pp-ed-edad").value?parseInt($("pp-ed-edad").value,10):null,
+    p_nombre:($("pp-ed-nombre").value||"").trim()||null,
+    p_titulo:($("pp-ed-titulo").value||"").trim()||null,
+    p_tipo:$("pp-ed-tipo").value,
+    p_perdio_trabajo:$("pp-ed-perdio").checked,
+    p_sector:$("pp-ed-sector").value||null,
+    p_experiencia:($("pp-ed-exp").value||"").trim()||null,
+    p_habilidades:($("pp-ed-hab").value||"").trim()||null,
+    p_modalidad:$("pp-ed-modalidad").value,
+    p_estado:($("pp-ed-estado").value||"").trim()||null,
+    p_ciudad:($("pp-ed-ciudad").value||"").trim()||null,
+    p_whatsapp:($("pp-ed-wa").value||"").trim()||null,
+    p_instagram:($("pp-ed-ig").value||"").trim()||null
+  };
+}
 async function miPanelPerfilAccion(params,msgOk){
   const s=leerSesionPerfil();
   if(!s||!s.id||!s.clave){toast("Tu sesión expiró, inicia sesión de nuevo","err");setView("personas");return;}
+  const edadVal=$("pp-ed-edad").value;
+  if(edadVal&&(parseInt(edadVal,10)<14||parseInt(edadVal,10)>100)){toast("La edad debe estar entre 14 y 100 años","err");return;}
   try{
-    await callRPC("emp_actualizar_perfil",Object.assign({p_id:s.id,p_clave:s.clave,p_disponibilidad:($("pp-disp").value||"").trim()||null},params));
+    await callRPC("emp_actualizar_perfil",Object.assign({p_id:s.id,p_clave:s.clave},datosPanelPerfil(),params));
     toast(msgOk,"ok");
     await refrescarPerfiles();cargarStats();
     pintarPanelPerfil(PERFILES.find(p=>p.id===s.id));
@@ -987,6 +1142,7 @@ $("pp-on").addEventListener("click",()=>miPanelPerfilAccion({p_disponible:true},
 $("pp-off").addEventListener("click",()=>miPanelPerfilAccion({p_disponible:false},"Marcado como no disponible"));
 $("pp-retirar").addEventListener("click",()=>miPanelPerfilAccion({p_activo:false},"🎉 ¡Felicidades! Tu perfil fue retirado"));
 $("pp-reactivar").addEventListener("click",()=>miPanelPerfilAccion({p_activo:true},"✅ Tu perfil fue reactivado"));
+$("pp-ed-guardar").addEventListener("click",()=>miPanelPerfilAccion({},"✅ Cambios guardados"));
 $("pp-volver").addEventListener("click",()=>setView("personas"));
 $("pp-salir").addEventListener("click",()=>{borrarSesionPerfil();setView("personas");});
 
@@ -1018,6 +1174,7 @@ $("so-send").addEventListener("click",async ()=>{
       cerrarSheets();
       ["so-inst","so-titulo","so-desc","so-personas","so-pago","so-estado","so-ciudad","so-nombre","so-tel"].forEach(i=>{if($(i))$(i).value="";});
       $("so-consent").checked=false;
+      claveCtx="sol";
       $("clave-title").textContent="✅ ¡Publicado!";
       $("clave-hint").innerHTML="Guarda tu <b>clave de gestión</b>: con ella ves las postulaciones y marcas la publicación como cubierta. <b>Solo se muestra esta vez.</b>";
       $("clave-num").textContent=res.clave||"——————";
