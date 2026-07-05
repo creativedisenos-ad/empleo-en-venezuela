@@ -131,7 +131,8 @@
   .b-on{background:var(--ok-bg);color:var(--ok)}.b-off{background:var(--unk-bg);color:var(--unk)}
   .b-urg{background:var(--bad-bg);color:var(--bad)}.b-nor{background:var(--unk-bg);color:var(--unk)}
   .b-cub{background:var(--brand-soft);color:#12316e}
-  .bio{font-size:.9rem;color:var(--ink-2);margin-top:.6rem;line-height:1.5}
+  .bio-label{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:.75rem 0 .3rem}
+  .bio{font-size:.9rem;color:var(--ink-2);margin-top:.2rem;line-height:1.55;padding:.05rem 0 .05rem .7rem;border-left:3px solid var(--line-2)}
   .meta{font-size:.8rem;color:var(--muted);margin-top:.55rem;font-weight:600;line-height:1.5}
   .row-actions{display:flex;gap:.5rem;margin-top:.85rem;flex-wrap:wrap}
   .act{font-size:.9rem;font-weight:700;padding:.65rem 1rem;border-radius:var(--r-pill);cursor:pointer;border:1.5px solid var(--line);
@@ -751,8 +752,10 @@ async function cargarSols(){const r=await callRPC("emp_listar_solicitudes",{});S
 
 /* ---------- selects ---------- */
 const TIPO_PERFIL={busco_empleo:"Busca empleo",voluntario:"Voluntario/a",ambos:"Empleo o voluntariado"};
+const TIPO_ICONO={busco_empleo:"💼",voluntario:"🤝",ambos:"💼🤝"};
 const MODAL={presencial:"Presencial",remoto:"Remoto",ambas:"Presencial o remoto"};
 const PUESTO={voluntariado:"Voluntariado",empleo:"Empleo",temporal:"Temporal"};
+const PUESTO_ICONO={voluntariado:"🤝",empleo:"💼",temporal:"🕐"};
 const SOLIC={empresa:"Empresa",institucion:"Institución",hospital:"Hospital",ong:"ONG",alcaldia:"Institución pública",iglesia:"Iglesia",escuela:"Colegio",acopio:"Centro de acopio",refugio:"Refugio",persona:"Persona",otro:"Otro"};
 function poblarSectores(){
   const ops='<option value="">Todos los sectores</option>'+Object.keys(SECTORES).map(k=>`<option value="${k}">${esc(SECTORES[k])}</option>`).join("");
@@ -786,17 +789,17 @@ function aplicarFiltrosPerfil(){
 function perfilCard(p){
   const wa=p.whatsapp?`<a class="act wa" href="${esc(waLink(p.whatsapp,"Hola "+p.nombre.split(" ")[0]+", vi tu perfil en empleoenvenezuela.com y quiero hablar contigo."))}" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.4 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Contactar por WhatsApp</a>`:"";
   const ig=p.instagram?`<a class="act" href="${esc(igLink(p.instagram))}" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg>Instagram</a>`:"";
-  const tags=[`<span class="tag t-${esc(p.tipo==="busco_empleo"?"empleo":p.tipo)}">${esc(TIPO_PERFIL[p.tipo]||"")}</span>`,`<span class="tag">${esc(SECTORES[p.sector]||p.sector||"")}</span>`];
-  if(p.perdio_trabajo)tags.push('<span class="tag t-perdio">Su trabajo ya no existe</span>');
+  const tags=[`<span class="tag t-${esc(p.tipo==="busco_empleo"?"empleo":p.tipo)}">${TIPO_ICONO[p.tipo]||""} ${esc(TIPO_PERFIL[p.tipo]||"")}</span>`,`<span class="tag">🏷️ ${esc(SECTORES[p.sector]||p.sector||"")}</span>`];
+  if(p.perdio_trabajo)tags.push('<span class="tag t-perdio">⚠️ Su trabajo ya no existe</span>');
   return `<li class="card" data-id="${esc(p.id)}">
     <div class="card-top"><div>
       <p class="name">${esc(p.nombre)}</p>
       <p class="titulo">${esc(p.titulo)}</p>
     </div><span class="badge ${p.disponible?"b-on":"b-off"}"><span class="d"></span>${p.disponible?"Disponible":"No disponible"}</span></div>
     <p class="sub">${tags.join("")}</p>
-    ${p.experiencia?`<div class="bio">${esc(p.experiencia)}</div>`:""}
+    ${p.experiencia?`<div class="bio-label">Sobre su experiencia</div><div class="bio">${esc(p.experiencia)}</div>`:""}
     ${p.habilidades?`<div class="meta">💠 ${esc(p.habilidades)}</div>`:""}
-    <div class="meta">${p.disponibilidad?("🕒 "+esc(p.disponibilidad)+" · "):""}${esc(MODAL[p.modalidad]||"")} · ${esc(p.ciudad)}, ${esc(p.estado)} · ${esc(hace(p.creado))}</div>
+    <div class="meta">${p.disponibilidad?("🕒 "+esc(p.disponibilidad)+" · "):""}${esc(MODAL[p.modalidad]||"")} · 📍 ${esc(p.ciudad)}, ${esc(p.estado)} · ${esc(hace(p.creado))}</div>
     <div class="row-actions">${wa}${ig}</div>
     <button class="flag" data-flag="${esc(p.id)}" data-name="${esc(p.nombre)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4h13l-1.5 4 1.5 4H4"/></svg>Reportar</button>
   </li>`;
@@ -828,10 +831,11 @@ function solCard(s){
   return `<li class="card" data-id="${esc(s.id)}">
     <div class="card-top"><div>
       <p class="name">${esc(s.titulo)}</p>
-      <p class="sub"><span class="tag t-${esc(s.puesto_tipo==="empleo"?"empleo":(s.puesto_tipo==="temporal"?"temporal":"voluntario"))}">${esc(PUESTO[s.puesto_tipo]||"")}</span><span class="tag">${esc(SECTORES[s.sector]||s.sector||"")}</span></p>
+      <p class="sub"><span class="tag t-${esc(s.puesto_tipo==="empleo"?"empleo":(s.puesto_tipo==="temporal"?"temporal":"voluntario"))}">${PUESTO_ICONO[s.puesto_tipo]||""} ${esc(PUESTO[s.puesto_tipo]||"")}</span><span class="tag">🏷️ ${esc(SECTORES[s.sector]||s.sector||"")}</span></p>
     </div>${badge}</div>
+    <div class="bio-label">Descripción</div>
     <div class="bio">${esc(s.descripcion)}</div>
-    <div class="meta">Publica: ${quien} · ${esc(s.ciudad)}, ${esc(s.estado)}${s.personas?` · ~${esc(s.personas)} personas`:""}${s.pago?` · 💵 ${esc(s.pago)}`:""}</div>
+    <div class="meta">Publica: ${quien} · 📍 ${esc(s.ciudad)}, ${esc(s.estado)}${s.personas?` · 👥 ~${esc(s.personas)} personas`:""}${s.pago?` · 💵 ${esc(s.pago)}`:""}</div>
     <div class="meta">Contacto: ${esc(s.telefono_mask||"····")} · ${s.postulaciones>0?(s.postulaciones+(s.postulaciones===1?" postulación · ":" postulaciones · ")):""}${esc(hace(s.creado))}</div>
     ${abierta?`<div class="row-actions"><button class="act" data-postular="${esc(s.id)}" data-titulo="${esc(s.titulo)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>${s.puesto_tipo==="voluntariado"?"Quiero ayudar":"Postularme"}</button></div>`:""}
     <button class="flag" data-flagsol="${esc(s.id)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4h13l-1.5 4 1.5 4H4"/></svg>Reportar</button>
